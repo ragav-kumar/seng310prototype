@@ -1,0 +1,28 @@
+//main: main.less, out: main.css
+
+html {
+	box-sizing: border-box;
+}
+header, footer {
+	height: 10vh;
+	width: 100%;
+	border: 2px solid red;
+}
+main {
+	display: table;
+	height: 80vh;
+	width: 100%;
+	border-spacing: 20px;
+	.row {
+		display: table-row;
+		.cell {
+			display: table-cell;
+			border: 10px dashed gray;
+			border-radius: 10px;
+			font-size: 100px;
+			font-weight: 900;
+			color: gray;
+			text-align: center;
+		}
+	}
+}
