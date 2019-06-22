@@ -1,15 +1,24 @@
 html {
   box-sizing: border-box;
 }
+html body {
+  width: 360px;
+  height: 740px;
+}
 header,
 footer {
-  height: 10vh;
   width: 100%;
   border: 2px solid red;
 }
+header {
+  height: 10%;
+}
+footer {
+  height: 5%;
+}
 main {
   display: table;
-  height: 80vh;
+  height: 85%;
   width: 100%;
   border-spacing: 20px;
 }
