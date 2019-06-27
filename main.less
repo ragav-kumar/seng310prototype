@@ -1,10 +1,20 @@
 //main: main.less, out: main.css
-
-html {
+* {
 	box-sizing: border-box;
+}
+html {
 	body {
-		width: 360px;
-		height: 740px;
+		display: flex;
+		justify-content: center;
+		#wrap {
+			width: 360px;
+			height: 740px;
+			background-image: url("img/uvic-wallpaper.png");
+			background-size: cover;
+			>* {
+				margin: 0;
+			}
+		}
 	}
 }
 header, footer {
@@ -14,20 +24,25 @@ header, footer {
 header { height: 10%; }
 footer { height:  5%; }
 main {
-	display: table;
-	height: 85%;
-	width: 100%;
-	border-spacing: 20px;
-	.row {
-		display: table-row;
-		.cell {
-			display: table-cell;
-			border: 10px dashed gray;
-			border-radius: 10px;
-			font-size: 100px;
-			font-weight: 900;
-			color: gray;
-			text-align: center;
+	.tile-wrap {
+		display: table;
+		height: 85%;
+		width: 100%;
+		border-spacing: 20px;
+		.row {
+			display: table-row;
+			.cell {
+				display: table-cell;
+				border: 10px dashed gray;
+				border-radius: 10px;
+				font-size: 98px;
+				font-weight: 900;
+				color: gray;
+				text-align: center;
+			}
 		}
+	}
+	.tile-selector, .settings {
+		display: none;
 	}
 }
