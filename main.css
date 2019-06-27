@@ -10,6 +10,7 @@ html body #wrap {
   height: 740px;
   background-image: url("img/uvic-wallpaper.png");
   background-size: cover;
+  background-position: center center;
 }
 html body #wrap > * {
   margin: 0;
