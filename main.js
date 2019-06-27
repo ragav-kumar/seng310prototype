@@ -1,3 +1,3 @@
 $(function () {
-	
+	$("#cell-news").tabs();
 });

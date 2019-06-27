@@ -27,16 +27,17 @@ footer {
   height: 5%;
 }
 main .tile-wrap {
-  display: table;
   height: 85%;
   width: 100%;
   border-spacing: 20px;
 }
 main .tile-wrap .row {
-  display: table-row;
+  display: flex;
+  height: calc(20% - 10px);
 }
 main .tile-wrap .row .cell {
-  display: table-cell;
+  width: calc(50% - 10px);
+  margin: 5px;
   border: 10px dashed gray;
   border-radius: 10px;
   font-size: 98px;
@@ -44,7 +45,26 @@ main .tile-wrap .row .cell {
   color: gray;
   text-align: center;
 }
-main .tile-selector,
-main .settings {
+main .tile-wrap .row #cell-news li.ui-tabs-tab {
+  font-size: 10pt;
+  max-width: 33%;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 0;
+}
+main .tile-wrap .row #cell-news li.ui-tabs-tab a {
+  padding: 0;
+}
+main .tile-wrap .row #cell-news div {
+  padding: 5px;
+  background-color: transparent;
+}
+main .tile-wrap .row #cell-news div ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+main .popup-tiles,
+main .popup-settings {
   display: none;
 }
