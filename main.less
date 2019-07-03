@@ -25,36 +25,124 @@ header, footer {
 header { height: 10%; }
 footer { height:  5%; }
 main {
+	
 	.tile-wrap {
+
 		// display: table;
 		height: 85%;
 		width: 100%;
 		border-spacing: 20px;
-		.row {
+		
+
+		.row  {
 			// display: table-row;
 			display: flex;
 			height: ~"calc(20% - 10px)";
+
 			.cell {
 				// display: table-cell;
 				width: ~"calc(50% - 10px)";
-				margin: 5px;
+				margin: 6px;
 				border: 10px dashed gray;
 				border-radius: 10px;
 				font-size: 98px;
 				font-weight: 900;
 				color: gray;
 				text-align: center;
+				
 			}
+			#cell-content{
+				background-color: rgba(0, 94, 184, 0.9);
+				width: 100%;
+				margin: 6px;
+				color: white;
+				padding-left: 5px;
+				padding-top: 0%;
+				padding-bottom: 0%;
+				border: 1px solid black;
+				overflow-y: scroll;
+				#cell-classes{
+					padding: 0%;
+					margin: 0%;
+					h3{
+						line-height: 0px;
+					}
+					ul{
+						list-style-type: none;
+						padding-left: 5%;
+					}
+				}
+			
+			}
+			
+			.cell-onecard{
+				width: ~"calc(50% - 10px)";
+				margin: 6px;
+				background-color: rgba(0, 94, 184, 0.9);
+				border: 1px solid black;
+				#cell-onecard{
+					color: white;
+					margin: 25%;
+				}
+			}
+			.cell-notify{
+				width: ~"calc(50% - 10px)";
+				margin: 6px;
+				background-color: rgba(0, 94, 184, 0.9);
+				border: 1px solid black;
+				#cell-notify{
+					color: white;
+					margin-top:35%;
+					margin-left: 20%;
+				}
+			}
+			.cell-bus{
+				width: 100%;
+				margin: 6px;
+				background-color: rgba(0, 94, 184, 0.9);
+				border: 1px solid black;
+				color: white;
+				overflow-y: scroll;
+
+				#cell-bus{
+					h2{
+						margin-left: 5px;
+						line-height: 8px;
+					}
+					ul{
+						list-style-type: none;
+						margin: 3%;
+						padding: 0;
+						
+					}
+					
+				}
+			}
+			
 			#cell-news {
 				// column-span: all;
-				
+				background-color: rgba(0, 94, 184, 0.9);
+				margin: 6px;
+				border: 1px solid black;
+				#cell-tabs{
+					background-color: rgba(0, 94, 184, 0.9);
+				}
+				#news-1, #news-2, #news-3{
+					overflow-y: scroll;
+					color:white;	
+				}
+
 				li.ui-tabs-tab {
 					font-size: 10pt;
 					max-width: 33%;
 					padding-left: 5px;
 					padding-right: 5px;
 					margin: 0;
+					background-color: rgba(0, 94, 184, 0.8);
+					
 					a {
+						
+						color:white;
 						padding:0;
 					}
 				}
