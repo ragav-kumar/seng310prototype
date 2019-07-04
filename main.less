@@ -16,8 +16,8 @@
 	box-sizing: border-box;
 	// Default font settings per invision
 	font-family: Arial;
-	font-size: 17px;
-	font-weight: normal;
+	// font-size: 17px;
+	// font-weight: normal;
 	line-height: 1.12em;
 }
 html {
@@ -57,9 +57,33 @@ header {
 		}
 	}
 }
-footer { height:  5%; }
+footer {
+	// height: 5%;
+	.footer-inner {
+		border: 1px solid @darkBlue;
+		background-color: @yellow;
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	h3 {
+		color: white;
+		margin: 0;
+		margin-right: 20px;
+		display: inline-block;
+	}
+	i {
+		font-size: 40px;
+		margin: 0 7px;
+	}
+	.fa-facebook { color: #3C5A99; }
+	.fa-twitter-square { color: #38A1F3; }
+	.fa-youtube { color: red; }
+}
 main {
-	height: 85%;
+	// height: 85%;
+	height: 600px;
 	.tile-wrap {
 
 		// display: table;

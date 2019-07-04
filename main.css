@@ -6,8 +6,6 @@
 * {
   box-sizing: border-box;
   font-family: Arial;
-  font-size: 17px;
-  font-weight: normal;
   line-height: 1.12em;
 }
 html body {
@@ -44,11 +42,35 @@ header div.menu-icon {
 header div.user-icon {
   float: right;
 }
-footer {
-  height: 5%;
+footer .footer-inner {
+  border: 1px solid #002754;
+  background-color: #F5AA1C;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+footer h3 {
+  color: white;
+  margin: 0;
+  margin-right: 20px;
+  display: inline-block;
+}
+footer i {
+  font-size: 40px;
+  margin: 0 7px;
+}
+footer .fa-facebook {
+  color: #3C5A99;
+}
+footer .fa-twitter-square {
+  color: #38A1F3;
+}
+footer .fa-youtube {
+  color: red;
 }
 main {
-  height: 85%;
+  height: 600px;
 }
 main .tile-wrap {
   height: 100%;
