@@ -1,12 +1,29 @@
 //main: main.less, out: main.css
+
+/*
+	WARNING:
+	DO NOT EDIT main.css DIRECTLY!
+	ANY CHANGES TO main.less WILL OVERWRITE EDITS TO main.css.
+*/
+// Variables
+@blue: #005493;
+@yellow: #F5AA1C;
+@red: #C63527;
+@darkBlue: #002754;
+// For transparents, use fade()
+
 * {
 	box-sizing: border-box;
+	// Default font settings per invision
+	font: Arial 17px regular;
+	line-height: 1.12em;
 }
 html {
 	body {
 		display: flex;
 		justify-content: center;
 		#wrap {
+			// Restrict to phone dimensions. Might loosen this later
 			width: 360px;
 			height: 740px;
 			background-image: url("img/uvic-wallpaper.png");
@@ -20,7 +37,7 @@ html {
 }
 header, footer {
 	width: 100%;
-	border: 2px solid red;
+	border: 2px solid red; // PLACEHOLDER
 }
 header { height: 10%; }
 footer { height:  5%; }
@@ -52,7 +69,7 @@ main {
 				
 			}
 			#cell-content{
-				background-color: rgba(0, 94, 184, 0.9);
+				background-color: fade(@blue, 0.9);
 				width: 100%;
 				margin: 6px;
 				color: white;
@@ -78,7 +95,6 @@ main {
 			.cell-onecard{
 				width: ~"calc(50% - 10px)";
 				margin: 6px;
-				background-color: rgba(0, 94, 184, 0.9);
 				border: 1px solid black;
 				#cell-onecard{
 					color: white;
@@ -88,7 +104,6 @@ main {
 			.cell-notify{
 				width: ~"calc(50% - 10px)";
 				margin: 6px;
-				background-color: rgba(0, 94, 184, 0.9);
 				border: 1px solid black;
 				#cell-notify{
 					color: white;
@@ -120,7 +135,6 @@ main {
 			}
 			
 			#cell-news {
-				// column-span: all;
 				background-color: rgba(0, 94, 184, 0.9);
 				margin: 6px;
 				border: 1px solid black;
@@ -131,19 +145,23 @@ main {
 					overflow-y: scroll;
 					color:white;	
 				}
-
-				li.ui-tabs-tab {
-					font-size: 10pt;
-					max-width: 33%;
-					padding-left: 5px;
-					padding-right: 5px;
-					margin: 0;
-					background-color: rgba(0, 94, 184, 0.8);
-					
-					a {
-						
-						color:white;
-						padding:0;
+				#cell-tabs {
+					>li {
+						font-size: 10pt;
+						max-width: 33%;
+						padding-left: 5px;
+						padding-right: 5px;
+						margin: 0;
+						// Inactive tabs
+						background-color: #C63527;
+						// Active tab
+						&.ui-tabs-active {
+							background-color: rgba(0, 94, 184, 0.8);
+						}
+						a {
+							color:white;
+							padding:0;
+						}
 					}
 				}
 				div {

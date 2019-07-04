@@ -1,5 +1,12 @@
+/*
+	WARNING:
+	DO NOT EDIT main.css DIRECTLY!
+	ANY CHANGES TO main.less WILL OVERWRITE EDITS TO main.css.
+*/
 * {
   box-sizing: border-box;
+  font: Arial 17px regular;
+  line-height: 1.12em;
 }
 html body {
   display: flex;
@@ -46,7 +53,7 @@ main .tile-wrap .row .cell {
   text-align: center;
 }
 main .tile-wrap .row #cell-content {
-  background-color: rgba(0, 94, 184, 0.9);
+  background-color: rgba(0, 84, 147, 0.009);
   width: 100%;
   margin: 6px;
   color: white;
@@ -70,7 +77,6 @@ main .tile-wrap .row #cell-content #cell-classes ul {
 main .tile-wrap .row .cell-onecard {
   width: calc(50% - 10px);
   margin: 6px;
-  background-color: rgba(0, 94, 184, 0.9);
   border: 1px solid black;
 }
 main .tile-wrap .row .cell-onecard #cell-onecard {
@@ -80,7 +86,6 @@ main .tile-wrap .row .cell-onecard #cell-onecard {
 main .tile-wrap .row .cell-notify {
   width: calc(50% - 10px);
   margin: 6px;
-  background-color: rgba(0, 94, 184, 0.9);
   border: 1px solid black;
 }
 main .tile-wrap .row .cell-notify #cell-notify {
@@ -119,15 +124,18 @@ main .tile-wrap .row #cell-news #news-3 {
   overflow-y: scroll;
   color: white;
 }
-main .tile-wrap .row #cell-news li.ui-tabs-tab {
+main .tile-wrap .row #cell-news #cell-tabs > li {
   font-size: 10pt;
   max-width: 33%;
   padding-left: 5px;
   padding-right: 5px;
   margin: 0;
+  background-color: #C63527;
+}
+main .tile-wrap .row #cell-news #cell-tabs > li.ui-tabs-active {
   background-color: rgba(0, 94, 184, 0.8);
 }
-main .tile-wrap .row #cell-news li.ui-tabs-tab a {
+main .tile-wrap .row #cell-news #cell-tabs > li a {
   color: white;
   padding: 0;
 }
