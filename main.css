@@ -5,7 +5,9 @@
 */
 * {
   box-sizing: border-box;
-  font: Arial 17px regular;
+  font-family: Arial;
+  font-size: 17px;
+  font-weight: normal;
   line-height: 1.12em;
 }
 html body {
@@ -25,16 +27,31 @@ html body #wrap > * {
 header,
 footer {
   width: 100%;
-  border: 2px solid red;
+  padding: 5px;
 }
 header {
   height: 10%;
 }
+header div {
+  display: inline-block;
+}
+header div i {
+  font-size: 56px;
+}
+header div.menu-icon {
+  color: transparent;
+}
+header div.user-icon {
+  float: right;
+}
 footer {
   height: 5%;
 }
-main .tile-wrap {
+main {
   height: 85%;
+}
+main .tile-wrap {
+  height: 100%;
   width: 100%;
   border-spacing: 20px;
 }

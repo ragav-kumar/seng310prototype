@@ -15,7 +15,9 @@
 * {
 	box-sizing: border-box;
 	// Default font settings per invision
-	font: Arial 17px regular;
+	font-family: Arial;
+	font-size: 17px;
+	font-weight: normal;
 	line-height: 1.12em;
 }
 html {
@@ -37,16 +39,31 @@ html {
 }
 header, footer {
 	width: 100%;
-	border: 2px solid red; // PLACEHOLDER
+	padding: 5px;
+	// border: 2px solid red; // PLACEHOLDER
 }
-header { height: 10%; }
+header {
+	height: 10%;
+	div {
+		display: inline-block;
+		i {
+			font-size: 56px;
+		}
+		&.menu-icon {
+			color: transparent;
+		}
+		&.user-icon {
+			float: right;
+		}
+	}
+}
 footer { height:  5%; }
 main {
-	
+	height: 85%;
 	.tile-wrap {
 
 		// display: table;
-		height: 85%;
+		height: 100%;
 		width: 100%;
 		border-spacing: 20px;
 		
