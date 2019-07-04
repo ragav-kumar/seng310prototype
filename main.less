@@ -24,7 +24,7 @@ html {
 		justify-content: center;
 		#wrap {
 			// Restrict to phone dimensions. Might loosen this later
-			width: 360px;
+			width: 375px;
 			height: 740px;
 			background-image: url("img/uvic-wallpaper.png");
 			background-size: cover;
@@ -54,22 +54,10 @@ main {
 		.row  {
 			// display: table-row;
 			display: flex;
-			height: ~"calc(20% - 10px)";
-
+			// height: ~"calc(20% - 10px)";
+			height: 150px;
 			.cell {
-				// display: table-cell;
-				width: ~"calc(50% - 10px)";
-				margin: 6px;
-				border: 10px dashed gray;
-				border-radius: 10px;
-				font-size: 98px;
-				font-weight: 900;
-				color: gray;
-				text-align: center;
-				
-			}
-			#cell-content{
-				background-color: fade(@blue, 0.9);
+				background-color: fade(@blue, 90);
 				width: 100%;
 				margin: 6px;
 				color: white;
@@ -77,61 +65,51 @@ main {
 				padding-top: 0%;
 				padding-bottom: 0%;
 				border: 1px solid black;
-				overflow-y: scroll;
-				#cell-classes{
-					padding: 0%;
-					margin: 0%;
-					h3{
-						line-height: 0px;
-					}
-					ul{
-						list-style-type: none;
-						padding-left: 5%;
-					}
-				}
-			
-			}
-			
-			.cell-onecard{
-				width: ~"calc(50% - 10px)";
+				// height: ~"calc(20% - 10px)";
+				overflow: auto; // Takes care of overflow automatically	
 				margin: 6px;
-				border: 1px solid black;
-				#cell-onecard{
-					color: white;
-					margin: 25%;
+				.cell-1, .cell-2 {
+					width: ~"calc(50% - 10px)";
+				}
+				.cell-empty {
+					border: 10px dashed gray;
+					border-radius: 10px;
+					font-size: 98px;
+					font-weight: 900;
+					color: gray;
+					text-align: center;
 				}
 			}
-			.cell-notify{
-				width: ~"calc(50% - 10px)";
-				margin: 6px;
-				border: 1px solid black;
-				#cell-notify{
-					color: white;
-					margin-top:35%;
-					margin-left: 20%;
+			#cell-classes{
+				padding: 0%;
+				margin: 0%;
+				h3{
+					line-height: 0px;
+				}
+				ul{
+					list-style-type: none;
+					padding-left: 5%;
 				}
 			}
-			.cell-bus{
-				width: 100%;
-				margin: 6px;
-				background-color: rgba(0, 94, 184, 0.9);
-				border: 1px solid black;
-				color: white;
-				overflow-y: scroll;
-
-				#cell-bus{
-					h2{
-						margin-left: 5px;
-						line-height: 8px;
-					}
-					ul{
-						list-style-type: none;
-						margin: 3%;
-						padding: 0;
-						
-					}
+			#cell-onecard{
+				margin: 25%;
+			}
+			#cell-notify{
+				margin-top:35%;
+				margin-left: 20%;
+			}
+			#cell-bus{
+				h2{
+					margin-left: 5px;
+					line-height: 8px;
+				}
+				ul{
+					list-style-type: none;
+					margin: 3%;
+					padding: 0;
 					
 				}
+				
 			}
 			
 			#cell-news {

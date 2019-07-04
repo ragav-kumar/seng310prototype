@@ -13,7 +13,7 @@ html body {
   justify-content: center;
 }
 html body #wrap {
-  width: 360px;
+  width: 375px;
   height: 740px;
   background-image: url("img/uvic-wallpaper.png");
   background-size: cover;
@@ -40,11 +40,24 @@ main .tile-wrap {
 }
 main .tile-wrap .row {
   display: flex;
-  height: calc(20% - 10px);
+  height: 150px;
 }
 main .tile-wrap .row .cell {
-  width: calc(50% - 10px);
+  background-color: rgba(0, 84, 147, 0.9);
+  width: 100%;
+  color: white;
+  padding-left: 5px;
+  padding-top: 0%;
+  padding-bottom: 0%;
+  border: 1px solid black;
+  overflow: auto;
   margin: 6px;
+}
+main .tile-wrap .row .cell .cell-1,
+main .tile-wrap .row .cell .cell-2 {
+  width: calc(50% - 10px);
+}
+main .tile-wrap .row .cell .cell-empty {
   border: 10px dashed gray;
   border-radius: 10px;
   font-size: 98px;
@@ -52,60 +65,29 @@ main .tile-wrap .row .cell {
   color: gray;
   text-align: center;
 }
-main .tile-wrap .row #cell-content {
-  background-color: rgba(0, 84, 147, 0.009);
-  width: 100%;
-  margin: 6px;
-  color: white;
-  padding-left: 5px;
-  padding-top: 0%;
-  padding-bottom: 0%;
-  border: 1px solid black;
-  overflow-y: scroll;
-}
-main .tile-wrap .row #cell-content #cell-classes {
+main .tile-wrap .row #cell-classes {
   padding: 0%;
   margin: 0%;
 }
-main .tile-wrap .row #cell-content #cell-classes h3 {
+main .tile-wrap .row #cell-classes h3 {
   line-height: 0px;
 }
-main .tile-wrap .row #cell-content #cell-classes ul {
+main .tile-wrap .row #cell-classes ul {
   list-style-type: none;
   padding-left: 5%;
 }
-main .tile-wrap .row .cell-onecard {
-  width: calc(50% - 10px);
-  margin: 6px;
-  border: 1px solid black;
-}
-main .tile-wrap .row .cell-onecard #cell-onecard {
-  color: white;
+main .tile-wrap .row #cell-onecard {
   margin: 25%;
 }
-main .tile-wrap .row .cell-notify {
-  width: calc(50% - 10px);
-  margin: 6px;
-  border: 1px solid black;
-}
-main .tile-wrap .row .cell-notify #cell-notify {
-  color: white;
+main .tile-wrap .row #cell-notify {
   margin-top: 35%;
   margin-left: 20%;
 }
-main .tile-wrap .row .cell-bus {
-  width: 100%;
-  margin: 6px;
-  background-color: rgba(0, 94, 184, 0.9);
-  border: 1px solid black;
-  color: white;
-  overflow-y: scroll;
-}
-main .tile-wrap .row .cell-bus #cell-bus h2 {
+main .tile-wrap .row #cell-bus h2 {
   margin-left: 5px;
   line-height: 8px;
 }
-main .tile-wrap .row .cell-bus #cell-bus ul {
+main .tile-wrap .row #cell-bus ul {
   list-style-type: none;
   margin: 3%;
   padding: 0;
