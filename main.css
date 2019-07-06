@@ -154,7 +154,7 @@ main .tile-wrap .row #cell-news {
 main .tile-wrap .row #cell-news #news-1,
 main .tile-wrap .row #cell-news #news-2,
 main .tile-wrap .row #cell-news #news-3 {
-  overflow-y: scroll;
+  overflow-y: auto;
   color: white;
 }
 main .tile-wrap .row #cell-news > ul {
