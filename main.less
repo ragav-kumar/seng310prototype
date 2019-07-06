@@ -44,17 +44,11 @@ header, footer {
 }
 header {
 	height: 10%;
-	div {
+	div, a {
 		display: inline-block;
-		i {
-			font-size: 56px;
-		}
-		&.menu-icon {
-			color: transparent;
-		}
-		&.user-icon {
-			float: right;
-		}
+		i { font-size: 56px; }
+		&.menu-icon { color: transparent; }
+		&.user-icon { float: right; }
 	}
 }
 footer {
@@ -155,27 +149,33 @@ main {
 			
 			#cell-news {
 				background-color: rgba(0, 94, 184, 0.9);
-				margin: 6px;
-				border: 1px solid black;
-				#cell-tabs{
-					background-color: rgba(0, 94, 184, 0.9);
-				}
+				// margin: 6px;
+				// border: 1px solid black;
 				#news-1, #news-2, #news-3{
 					overflow-y: scroll;
 					color:white;	
 				}
-				#cell-tabs {
+				>ul {
+					padding: 5px;
+					height: 40px;
+					background-color: transparent;
+					display: flex;
+
 					>li {
-						font-size: 10pt;
-						max-width: 33%;
-						padding-left: 5px;
-						padding-right: 5px;
+						font-size: 15px;
+						width: 33%;
+						// padding-left: 5px;
+						// padding-right: 5px;
 						margin: 0;
+						display: flex;
+						align-items: center;
+						justify-content: center;
 						// Inactive tabs
-						background-color: #C63527;
+						background-color: @red;
+						border: 1px solid @darkBlue;
 						// Active tab
 						&.ui-tabs-active {
-							background-color: rgba(0, 94, 184, 0.8);
+							background-color: fade(@blue, 80);
 						}
 						a {
 							color:white;
