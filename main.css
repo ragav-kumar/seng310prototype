@@ -148,7 +148,8 @@ main .tile-wrap .row #cell-bus ul {
   padding: 0;
 }
 main .tile-wrap .row #cell-news {
-  background-color: rgba(0, 94, 184, 0.9);
+  background-color: transparent;
+  border: 0;
 }
 main .tile-wrap .row #cell-news #news-1,
 main .tile-wrap .row #cell-news #news-2,
