@@ -8,12 +8,12 @@
 	<link rel="stylesheet" href="vendor/fontawesome/css/all.css">
 	<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+	<link rel="stylesheet" href="vendor/jqflipswitch.default.style.css" type="text/css" media="all" />
 	<link rel="stylesheet" href="main.css">
 	<!-- JS -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-	<!-- <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script> -->
-	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+	<script type="text/javascript" src="vendor/jquery.jqflipswitch.min.js"></script>
 	<script src="main.js"></script>
 	<title>Facelift Prototype</title>
 </head>
@@ -38,46 +38,25 @@
 				<!-- floaters -->
 				<div class="popup popup-settings">
 					<h2>Settings</h2>
-					<a href="tileselect.html" class="tile-customizer-button"><i class="fas fa-cogs"></i><span>Customize Homescreen</span></a>
+					<a href="tileselect.html" class="tile-customizer-button button"><i class="fas fa-cogs"></i><span>Customize Homescreen</span></a>
+					<h3>Show Push notifications for:</h3>
 					<div class="switch-row">
-							<fieldset>
-								<div data-role="fieldcontain">
-									<label for="checkbox-based-flipswitch">Checkbox-based:</label>
-									<input type="checkbox" id="checkbox-based-flipswitch" data-role="flipswitch">
-								</div>
-							</fieldset>
+						<div class="flipswitch"></div>
 						<h3>Next Class</h3>
 					</div>
 					<div class="switch-row">
-						<div class="onoffswitch">
-							<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
-							<label class="onoffswitch-label" for="myonoffswitch">
-								<span class="onoffswitch-inner"></span>
-								<span class="onoffswitch-switch"></span>
-							</label>
-						</div>
+						<div class="flipswitch"></div>
 						<h3>Tuition Due</h3>
 					</div>
 					<div class="switch-row">
-						<div class="onoffswitch">
-							<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
-							<label class="onoffswitch-label" for="myonoffswitch">
-								<span class="onoffswitch-inner"></span>
-								<span class="onoffswitch-switch"></span>
-							</label>
-						</div>
+						<div class="flipswitch"></div>
 						<h3>Admin Notices</h3>
 					</div>
 					<div class="switch-row">
-						<div class="onoffswitch">
-							<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
-							<label class="onoffswitch-label" for="myonoffswitch">
-								<span class="onoffswitch-inner"></span>
-								<span class="onoffswitch-switch"></span>
-							</label>
-						</div>
+						<div class="flipswitch"></div>
 						<h3>OneCard Balance</h3>
 					</div>
+					<a href="#" class="settings-save button">Save</a>
 				</div>
 				<div class="popup popup-tiles">
 					<!-- TODO: -->

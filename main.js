@@ -2,6 +2,12 @@ $(function () {
 	// ----- jQuery starts here -----
 	// News tabs (via jquery UI)
 	$("#cell-news").tabs();
+	$(".flipswitch").flipswitch({
+		texts: null,
+		height: 30,
+		width: 50,
+		init: "right"
+	});
 	// 
 	// Bus favourites
 	$("#cell-bus i").click(function () { 
@@ -26,6 +32,11 @@ $(function () {
 		e.preventDefault();
 		$(".popup-wrap").show();
 		$(".popup-settings").show();
+	});
+	$(".settings-save").click(function(e) {
+		e.preventDefault();
+		$(".popup-wrap").hide();
+		$(".popup-settings").hide();
 	});
 	// ----- jQuery ends here -----
 });
