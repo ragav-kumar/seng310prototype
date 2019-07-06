@@ -32,6 +32,7 @@ html body #wrap > * {
   border-radius: 8px;
   background-color: #ddd;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+  color: #000;
 }
 header,
 footer {
@@ -193,13 +194,14 @@ main .tile-wrap .row #cell-news div ul {
   top: 0;
   height: 100%;
   width: 375px;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.74);
   z-index: 1;
 }
 .popup-wrap .popup {
   margin: 80px 40px;
   padding: 20px;
-  background-color: rgba(0, 84, 147, 0.9);
+  background-color: #005493;
+  color: white;
   height: calc(100% - 160px);
 }
 .popup-wrap .popup h2 {
@@ -228,7 +230,7 @@ main .tile-wrap .row #cell-news div ul {
 .popup-wrap .popup.popup-settings .tile-customizer-button span {
   max-width: 80%;
   padding-left: 20px;
-  font-size: 24px;
+  font-size: 20px;
   font-weight: bold;
 }
 .popup-wrap .popup.popup-settings .switch-row {

@@ -46,7 +46,8 @@ html {
 	padding: 10px;
 	border-radius: 8px;
 	background-color: #ddd;
-	box-shadow: 0 2px 4px 0 fade(#000, 50)
+	box-shadow: 0 2px 4px 0 fade(#000, 50);
+	color: #000;
 }
 header, footer {
 	width: 100%;
@@ -213,12 +214,13 @@ main {
 	top: 0;
 	height: 100%;
 	width: 375px;
-	background-color: fade(#000,70);
+	background-color: fade(#000,74);
 	z-index: 1;
 	.popup {
 		margin: 80px 40px;
 		padding: 20px;
-		background-color: fade(@blue, 90);
+		background-color: @blue;
+		color: white;
 		height: ~"calc(100% - 160px)";
 		h2 {
 			text-align: center;
@@ -243,7 +245,7 @@ main {
 				span {
 					max-width: 80%;
 					padding-left: 20px;
-					font-size: 24px;
+					font-size: 20px;
 					font-weight: bold
 				}
 			}
