@@ -14,17 +14,18 @@ $(function () {
 		}
 	});
 	// Header Icons
-	$(".email-icon").click(function (e) { 
+	$(".email-icon").click(function (e) {
 		e.preventDefault();
-		alert("");
+		alert("This would open uvic webmail in a simulated browser view.");
 	});
-	function headerIconClick(e) {
+	$(".notification-icon").click(function (e) {
 		e.preventDefault();
-		if ($(this).hasClass("email-icon")) {
-			alert("This would open uvic webmail in a simulated browser view.");
-		} else if ($(this).hasClass("notification-icon")) {
-			window
-		}
-	}
+		alert("Notification window not implemented yet");
+	});
+	$(".settings-icon").click(function (e) {
+		e.preventDefault();
+		$(".popup-wrap").show();
+		$(".popup-settings").show();
+	});
 	// ----- jQuery ends here -----
 });

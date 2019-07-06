@@ -4,12 +4,16 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<link rel="stylesheet" href="fontawesome/css/all.css">
+	<!-- CSS -->
+	<link rel="stylesheet" href="vendor/fontawesome/css/all.css">
 	<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
 	<link rel="stylesheet" href="main.css">
+	<!-- JS -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-	<!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script> -->
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<!-- <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script> -->
+	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 	<script src="main.js"></script>
 	<title>Facelift Prototype</title>
 </head>
@@ -20,31 +24,64 @@
 			<div class="menu-icon">
 				<i class="fas fa-bars"></i>
 			</div>
-			<div class="settings-icon">
-				<i class="fas fa-cog"></i>
-			</div>
-			<div class="email-icon">
-				<i class="fas fa-envelope"></i>
-			</div>
-			<div class="notification-icon">
-				<i class="fas fa-bell"></i>
-			</div>
-			<!-- <a href="#" class="email-icon"><i class="fas fa-envelope"></i></a>
+			<a href="#" class="settings-icon"><i class="fas fa-cog"></i></a>
 			<a href="#" class="email-icon"><i class="fas fa-envelope"></i></a>
-			<a href="#" class="email-icon"><i class="fas fa-envelope"></i></a> -->
+			<a href="#" class="notification-icon"><i class="fas fa-bell"></i></a>
 			<!-- This one should be right aligned -->
-			<a href="login.html" class="user-icon"><i class="fas fa-user"></i></a>
+			<a href="loggedin.html" class="user-icon"><i class="fas fa-user"></i></a>
 		</header>
 		<!-- --------------------------------------------------------------- -->
 		<!-- CONTENT AREA BEGINS -->
 		<!-- --------------------------------------------------------------- -->
 		<main>
-			<!-- floaters -->
-			<div class="popup-settings">
-				<!-- TODO: -->
-			</div>
-			<div class="popup-tiles">
-				<!-- TODO: -->
+			<div class="popup-wrap">
+				<!-- floaters -->
+				<div class="popup popup-settings">
+					<h2>Settings</h2>
+					<a href="tileselect.html" class="tile-customizer-button"><i class="fas fa-cogs"></i><span>Customize Homescreen</span></a>
+					<div class="switch-row">
+							<fieldset>
+								<div data-role="fieldcontain">
+									<label for="checkbox-based-flipswitch">Checkbox-based:</label>
+									<input type="checkbox" id="checkbox-based-flipswitch" data-role="flipswitch">
+								</div>
+							</fieldset>
+						<h3>Next Class</h3>
+					</div>
+					<div class="switch-row">
+						<div class="onoffswitch">
+							<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
+							<label class="onoffswitch-label" for="myonoffswitch">
+								<span class="onoffswitch-inner"></span>
+								<span class="onoffswitch-switch"></span>
+							</label>
+						</div>
+						<h3>Tuition Due</h3>
+					</div>
+					<div class="switch-row">
+						<div class="onoffswitch">
+							<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
+							<label class="onoffswitch-label" for="myonoffswitch">
+								<span class="onoffswitch-inner"></span>
+								<span class="onoffswitch-switch"></span>
+							</label>
+						</div>
+						<h3>Admin Notices</h3>
+					</div>
+					<div class="switch-row">
+						<div class="onoffswitch">
+							<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
+							<label class="onoffswitch-label" for="myonoffswitch">
+								<span class="onoffswitch-inner"></span>
+								<span class="onoffswitch-switch"></span>
+							</label>
+						</div>
+						<h3>OneCard Balance</h3>
+					</div>
+				</div>
+				<div class="popup popup-tiles">
+					<!-- TODO: -->
+				</div>
 			</div>
 			<!-- Content area -->
 			<div class="tile-wrap">
