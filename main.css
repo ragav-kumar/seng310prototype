@@ -131,8 +131,25 @@ main .tile-wrap .row #cell-classes ul {
   list-style-type: none;
   padding-left: 5%;
 }
-main .tile-wrap .row #cell-onecard {
-  margin: 25%;
+main .tile-wrap .row #cell-onecard img {
+  float: left;
+  width: 70%;
+  height: 50px;
+  width: 51px;
+  margin-left: 5%;
+  margin-top: 10%;
+  margin-right: 5px;
+}
+main .tile-wrap .row #cell-onecard h3 {
+  padding-left: 5px;
+  float: left;
+  width: 30%;
+  margin-top: 18%;
+}
+main .tile-wrap .row #cell-onecard h2 {
+  float: left;
+  width: 100%;
+  padding-left: 25%;
 }
 main .tile-wrap .row #cell-notify {
   margin-top: 35%;
