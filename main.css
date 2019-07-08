@@ -107,6 +107,7 @@ main .tile-wrap .row .cell {
   border: 1px solid black;
   overflow: auto;
   margin: 6px;
+  position: relative;
 }
 main .tile-wrap .row .cell .cell-1,
 main .tile-wrap .row .cell .cell-2 {
@@ -120,9 +121,23 @@ main .tile-wrap .row .cell .cell-empty {
   color: gray;
   text-align: center;
 }
+main .tile-wrap .row .cell .lock-icon {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 32px;
+  height: 32px;
+}
 main .tile-wrap .row #cell-classes {
   padding: 0%;
   margin: 0%;
+  text-align: center;
+}
+main .tile-wrap .row #cell-classes.cell-locked {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
 }
 main .tile-wrap .row #cell-classes h3 {
   line-height: 0px;
@@ -131,8 +146,7 @@ main .tile-wrap .row #cell-classes ul {
   list-style-type: none;
   padding-left: 5%;
 }
-main .tile-wrap .row #cell-onecard img {
-  float: left;
+main .tile-wrap .row #cell-onecard .cell-icon {
   width: 70%;
   height: 50px;
   width: 51px;
@@ -151,21 +165,18 @@ main .tile-wrap .row #cell-onecard h2 {
   width: 100%;
   padding-left: 25%;
 }
-main .tile-wrap .row #cell-notify img {
+main .tile-wrap .row #cell-notify {
+  text-align: center;
+}
+main .tile-wrap .row #cell-notify .cell-icon {
   height: 80px;
-  width: 65px;
-  float: left;
-  width: 100%;
-  padding-left: 20%;
+  width: auto;
   padding-top: 10%;
-  padding-right: 30%;
   margin-bottom: 10px;
 }
 main .tile-wrap .row #cell-notify h3 {
   margin: 0%;
-  float: left;
   width: 100%;
-  padding-left: 10%;
 }
 main .tile-wrap .row #cell-bus h2 {
   margin-left: 5px;
@@ -175,6 +186,13 @@ main .tile-wrap .row #cell-bus ul {
   list-style-type: none;
   margin: 3%;
   padding: 0;
+}
+main .tile-wrap .row #cell-bus ul .fas.fa-star {
+  color: yellow;
+}
+main .tile-wrap .row #cell-bus ul .bus-number {
+  width: 1.5em;
+  display: inline-block;
 }
 main .tile-wrap .row #cell-news {
   background-color: transparent;

@@ -116,6 +116,7 @@ main {
 				// height: ~"calc(20% - 10px)";
 				overflow: auto; // Takes care of overflow automatically	
 				margin: 6px;
+				position: relative;
 				.cell-1, .cell-2 {
 					width: ~"calc(50% - 10px)";
 				}
@@ -127,10 +128,24 @@ main {
 					color: gray;
 					text-align: center;
 				}
+				.lock-icon {
+					position: absolute;
+					top: 5px;
+					right: 5px;
+					width: 32px;
+					height: 32px;
+				}
 			}
 			#cell-classes{
 				padding: 0%;
 				margin: 0%;
+				text-align: center;
+				&.cell-locked {
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					height: 100%;
+				}
 				h3{
 					line-height: 0px;
 				}
@@ -140,9 +155,9 @@ main {
 				}
 			}
 			#cell-onecard{
-				//display: flex;
-				img{
-					float: left;
+				// text-align: center;
+				.cell-icon {
+					// float: left;
 					width: 70%;
 					//flex: 70%;
 					height: 50px;
@@ -164,21 +179,19 @@ main {
 				}
 			}
 			#cell-notify{
-				img{
+				text-align: center;
+				.cell-icon {
 					height: 80px;
-					width: 65px;
-					float: left;
-					width: 100%;
-					padding-left: 20%;
+					width: auto;
+					// padding-left: 20%;
 					padding-top: 10%;
-					padding-right: 30%;
+					// padding-right: 30%;
 					margin-bottom: 10px;
 				}
 				h3{
 					margin: 0%;
-					float: left;
 					width: 100%;
-					padding-left: 10%;
+					// padding-left: 10%;
 				}
 			}
 			#cell-bus{
@@ -190,7 +203,13 @@ main {
 					list-style-type: none;
 					margin: 3%;
 					padding: 0;
-					
+					.fas.fa-star {
+						color: yellow;
+					}
+					.bus-number {
+						width: 1.5em;
+						display: inline-block;
+					}
 				}
 				
 			}

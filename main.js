@@ -28,7 +28,7 @@ $(function () {
 		}
 	});
 	// Header Icons
-	$(".email-icon").click(function (e) {
+	$("body.logged-in .email-icon").click(function (e) {
 		e.preventDefault();
 		alert("This would open uvic webmail in a simulated browser view.");
 	});
@@ -36,7 +36,7 @@ $(function () {
 		e.preventDefault();
 		alert("Notification window not implemented yet");
 	});
-	$(".settings-icon").click(function (e) {
+	$("body.logged-in .settings-icon").click(function (e) {
 		e.preventDefault();
 		$(".popup-wrap").show();
 		$(".popup-settings").show();
@@ -45,11 +45,6 @@ $(function () {
 		e.preventDefault();
 		$(".popup-wrap").hide();
 		$(".popup-settings").hide();
-	});
-	$(".user-icon.logged-out").click(function(e) {
-		e.preventDefault();
-		$(".popup-wrap").show();
-		$(".popup-login").show();
 	});
 	// Store name of submit button, allowing 2 submit buttons
 	$("input[type=submit]").click(function() {
@@ -67,6 +62,19 @@ $(function () {
 				alert("Please enter your netlink ID and password");
 			}
 		}
+	});
+	// Logout. Done the lazy way for now!
+	$(".logout").click(function(e) {
+		e.preventDefault();
+		if (confirm("Really logout?")) {
+			window.location.href = "index.html";
+		}
+	});
+	// When logged out, tapping any "locked" tile (or settings) will trigger login.
+	$("body.logged-out").on("click", ".user-icon, .cell-locked, .settings-icon", function (e) {
+		e.preventDefault();
+		$(".popup-wrap").show();
+		$(".popup-login").show();
 	});
 	// ----- jQuery ends here -----
 });
