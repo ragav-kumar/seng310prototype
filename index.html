@@ -28,11 +28,8 @@
 			<a href="#" class="email-icon"><i class="fas fa-envelope"></i></a>
 			<a href="#" class="notification-icon"><i class="fas fa-bell"></i></a>
 			<!-- This one should be right aligned -->
-			<a href="loggedin.html" class="user-icon"><i class="fas fa-user"></i></a>
+			<a href="#" class="user-icon logged-out"><i class="fas fa-user"></i></a>
 		</header>
-		<!-- --------------------------------------------------------------- -->
-		<!-- CONTENT AREA BEGINS -->
-		<!-- --------------------------------------------------------------- -->
 		<main>
 			<div class="popup-wrap">
 				<!-- floaters -->
@@ -58,11 +55,37 @@
 					</div>
 					<a href="#" class="settings-save button">Save</a>
 				</div>
+				<div class="popup popup-login">
+					<!-- TODO: Sign in banner -->
+					<img src="img/uvic-logo.png" class="uvic-logo-login" alt="">
+					<!-- TODO: input boxes -->
+					<!-- TODO: checkbox -->
+					<!-- TODO: Bottom buttons -->
+					<form id="form-login">
+						<div class="form-login-inner">
+							<h3>Sign in to UVic</h3>
+							<div class="fineprint">By signing in you will be authorized to access your applications and web sites that use the Sign in Service. Use is subject to but not limited to the policies and guidelines listed in <a href="#">Policies and guidelines</a>.</div>
+							<div class="input-row">
+								<label for="login-id">Netlink ID:</label><span>Do not include "uvic.ca"</span>
+								<input type="text" name="username" id="login-id">
+							</div>
+							<div class="input-row">
+								<label for="login-password">Password:</label>
+								<input type="password" name="password" id="login-password">
+							</div>
+							<input type="checkbox" name="remember" id="login-remember"><label for="login-remember">Remember me</label>
+						</div>
+						<input type="submit" name="signin" value="Sign in">
+						<input type="submit" name="cancel" value="Cancel">
+					</form>
+				</div>
 				<div class="popup popup-tiles">
 					<!-- TODO: -->
 				</div>
 			</div>
-			<!-- Content area -->
+			<!-- --------------------------------------------------------------- -->
+			<!-- CONTENT AREA BEGINS -->
+			<!-- --------------------------------------------------------------- -->
 			<div class="tile-wrap">
 				<div class="row row-0">
 					<div class="cell cell-1-2">

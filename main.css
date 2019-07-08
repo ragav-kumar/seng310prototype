@@ -228,7 +228,7 @@ main .tile-wrap .row #cell-news div ul {
   z-index: 1;
 }
 .popup-wrap .popup {
-  margin: 80px 40px;
+  margin: 100px 20px;
   padding: 20px;
   background-color: #005493;
   color: white;
@@ -281,6 +281,70 @@ main .tile-wrap .row #cell-news div ul {
   margin: 20px auto 0;
   font-size: 28px;
   text-align: center;
+}
+.popup-wrap .popup.popup-login {
+  color: black;
+  background-color: rgba(224, 224, 224, 0.8);
+  border-radius: 8px;
+  padding: 0;
+  padding-top: 20px;
+  position: relative;
+}
+.popup-wrap .popup.popup-login .uvic-logo-login {
+  width: 100%;
+}
+.popup-wrap .popup.popup-login .form-login-inner {
+  margin: 20px;
+  padding: 20px;
+  background-color: rgba(224, 224, 224, 0.8);
+  border-radius: 8px;
+}
+.popup-wrap .popup.popup-login .form-login-inner h3 {
+  font-size: 19px;
+  text-align: center;
+  font-weight: normal;
+}
+.popup-wrap .popup.popup-login .form-login-inner .fineprint {
+  font-size: 12px;
+  margin-bottom: 4em;
+}
+.popup-wrap .popup.popup-login .form-login-inner .fineprint a {
+  text-decoration: underline;
+  color: gray;
+}
+.popup-wrap .popup.popup-login .form-login-inner .input-row {
+  margin: 1em;
+}
+.popup-wrap .popup.popup-login .form-login-inner .input-row label {
+  font-size: 13px;
+}
+.popup-wrap .popup.popup-login .form-login-inner .input-row span {
+  float: right;
+  font-size: 11px;
+}
+.popup-wrap .popup.popup-login .form-login-inner .input-row input {
+  width: 100%;
+}
+.popup-wrap .popup.popup-login input[type=submit] {
+  position: absolute;
+  bottom: 0;
+  background-color: transparent;
+  box-shadow: none;
+  font-size: 17px;
+  border: 1px solid gray;
+  border-collapse: collapse;
+  height: 44px;
+  color: #005493;
+}
+.popup-wrap .popup.popup-login input[type=submit][name=signin] {
+  left: 0;
+  width: 50%;
+  border-bottom-left-radius: 8px;
+}
+.popup-wrap .popup.popup-login input[type=submit][name=cancel] {
+  right: 0;
+  width: 50%;
+  border-bottom-right-radius: 8px;
 }
 .jq-flipswitch.jq-flipper-left {
   background-color: #555;
