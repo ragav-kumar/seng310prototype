@@ -269,6 +269,7 @@ main {
 	background-color: fade(#000,74);
 	z-index: 1;
 	.popup {
+		display: none;
 		margin: 100px 20px;
 		padding: 20px;
 		background-color: @blue;
@@ -280,9 +281,6 @@ main {
 			display: inline-block;
 			width: 100%;
 		}
-		// &.popup-settings, &.popup-tiles {
-		// 	display: none;
-		// }
 		&.popup-settings { // Settings screen
 			//display: none;
 			.tile-customizer-button {
@@ -302,7 +300,7 @@ main {
 				}
 			}
 			// flipswitch overrides
-			.switch{
+			.switch-row {
 				display: flex;
 				.flipswitch {
 					margin: 8px 0;
