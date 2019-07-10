@@ -244,6 +244,7 @@ main .tile-wrap .row #cell-news div ul {
   z-index: 1;
 }
 .popup-wrap .popup {
+  display: none;
   margin: 100px 20px;
   padding: 20px;
   background-color: #005493;
