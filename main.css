@@ -273,13 +273,13 @@ main .tile-wrap .row #cell-news div ul {
   font-size: 20px;
   font-weight: bold;
 }
-.popup-wrap .popup.popup-settings .switch {
+.popup-wrap .popup.popup-settings .switch-row {
   display: flex;
 }
-.popup-wrap .popup.popup-settings .switch .flipswitch {
+.popup-wrap .popup.popup-settings .switch-row .flipswitch {
   margin: 8px 0;
 }
-.popup-wrap .popup.popup-settings .switch h3 {
+.popup-wrap .popup.popup-settings .switch-row h3 {
   margin: 0;
   margin-left: 20px;
   font-size: 20px;
