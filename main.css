@@ -124,6 +124,13 @@ main .tile-wrap .row #cell-classes {
   padding: 0%;
   margin: 0%;
 }
+main .tile-wrap .row #cell-classes img {
+  margin-left: 90%;
+}
+main .tile-wrap .row #cell-classes #login {
+  margin-left: 11%;
+  margin-top: 8%;
+}
 main .tile-wrap .row #cell-classes h3 {
   line-height: 0px;
 }
@@ -140,6 +147,14 @@ main .tile-wrap .row #cell-onecard img {
   margin-top: 10%;
   margin-right: 5px;
 }
+main .tile-wrap .row #cell-onecard #lock {
+  float: right;
+  height: 20px;
+  width: 20px;
+  margin-left: 50%;
+  margin-top: 0;
+  margin-right: 0;
+}
 main .tile-wrap .row #cell-onecard h3 {
   padding-left: 5px;
   float: left;
@@ -151,7 +166,13 @@ main .tile-wrap .row #cell-onecard h2 {
   width: 100%;
   padding-left: 25%;
 }
-main .tile-wrap .row #cell-notify img {
+main .tile-wrap .row #cell-notify #lock {
+  float: right;
+  height: 20px;
+  width: 20px;
+  margin-left: 80%;
+}
+main .tile-wrap .row #cell-notify #register {
   height: 80px;
   width: 65px;
   float: left;
