@@ -256,13 +256,6 @@ main .tile-wrap .row #cell-news div ul {
   display: inline-block;
   width: 100%;
 }
-.popup-wrap .popup.popup-settings,
-.popup-wrap .popup.popup-tiles {
-  display: none;
-}
-.popup-wrap .popup.popup-settings {
-  display: none;
-}
 .popup-wrap .popup.popup-settings .tile-customizer-button {
   display: block;
   width: 90%;
@@ -279,13 +272,13 @@ main .tile-wrap .row #cell-news div ul {
   font-size: 20px;
   font-weight: bold;
 }
-.popup-wrap .popup.popup-settings .switch-row {
+.popup-wrap .popup.popup-settings .switch {
   display: flex;
 }
-.popup-wrap .popup.popup-settings .switch-row .flipswitch {
+.popup-wrap .popup.popup-settings .switch .flipswitch {
   margin: 8px 0;
 }
-.popup-wrap .popup.popup-settings .switch-row h3 {
+.popup-wrap .popup.popup-settings .switch h3 {
   margin: 0;
   margin-left: 20px;
   font-size: 20px;
