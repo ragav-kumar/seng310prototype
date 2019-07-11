@@ -50,10 +50,6 @@ header div i,
 header a i {
   font-size: 56px;
 }
-header div.menu-icon,
-header a.menu-icon {
-  color: transparent;
-}
 header div.user-icon,
 header a.user-icon {
   float: right;
