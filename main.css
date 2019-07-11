@@ -105,9 +105,9 @@ main .tile-wrap .row .cell {
   margin: 6px;
   position: relative;
 }
-main .tile-wrap .row .cell .cell-1,
-main .tile-wrap .row .cell .cell-2 {
-  width: calc(50% - 10px);
+main .tile-wrap .row .cell.cell-empty {
+  background-color: transparent;
+  border: 0px;
 }
 main .tile-wrap .row .cell .lock-icon {
   position: absolute;
@@ -151,18 +151,27 @@ main .tile-wrap .row #cell-onecard h2 {
   width: 100%;
   padding-left: 25%;
 }
-main .tile-wrap .row #cell-notify {
+main .tile-wrap .row #cell-notify,
+main .tile-wrap .row .cell-single {
   text-align: center;
 }
-main .tile-wrap .row #cell-notify .cell-icon {
+main .tile-wrap .row #cell-notify .cell-icon,
+main .tile-wrap .row .cell-single .cell-icon {
   height: 80px;
   width: auto;
   padding-top: 10%;
   margin-bottom: 10px;
 }
-main .tile-wrap .row #cell-notify h3 {
+main .tile-wrap .row #cell-notify h3,
+main .tile-wrap .row .cell-single h3 {
   margin: 0%;
   width: 100%;
+}
+main .tile-wrap .row .cell-single {
+  padding-top: 8px;
+}
+main .tile-wrap .row #cell-notify {
+  padding-top: 14px;
 }
 main .tile-wrap .row #cell-bus h2 {
   margin-left: 5px;

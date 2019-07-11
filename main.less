@@ -117,12 +117,13 @@ main {
 				overflow: auto; // Takes care of overflow automatically	
 				margin: 6px;
 				position: relative;
-				.cell-1, .cell-2 {
-					width: ~"calc(50% - 10px)";
-				}
-				// .cell-empty {
-					
+				// .cell-1, .cell-2 {
+				// 	width: ~"calc(50% - 10px)";
 				// }
+				&.cell-empty {
+					background-color: transparent;
+					border: 0px;
+				}
 				.lock-icon {
 					position: absolute;
 					top: 5px;
@@ -169,7 +170,7 @@ main {
 					padding-left: 25%;
 				}
 			}
-			#cell-notify{
+			#cell-notify, .cell-single{
 				text-align: center;
 				.cell-icon {
 					height: 80px;
@@ -185,6 +186,8 @@ main {
 					// padding-left: 10%;
 				}
 			}
+			.cell-single { padding-top: 8px; }
+			#cell-notify { padding-top: 14px; }
 			#cell-bus{
 				h2{
 					margin-left: 5px;
