@@ -362,3 +362,53 @@ main .tile-wrap .row #cell-news div ul {
 .jq-flipswitch.jq-flipper-right {
   background-color: #0e0;
 }
+.tile-select .tile-wrap .row .cell {
+  background-color: #e0e0e0;
+  color: #000;
+}
+.tile-select .tile-wrap #cell-news {
+  background-color: #e0e0e0;
+}
+.tile-select .tile-wrap #xmark {
+  position: absolute;
+  left: 0;
+}
+.tile-select .tile-wrap #replace {
+  float: right;
+}
+.tile-select .tile-wrap .cell-1-2 #replace {
+  float: right;
+  widows: 20%;
+}
+.tile-select .tile-wrap .cell-1-2 #cell-classes img {
+  float: left;
+  margin-left: 10%;
+  margin-top: 0;
+  height: 70px;
+}
+.tile-select .tile-wrap .cell-1-2 #cell-classes h2 {
+  float: left;
+  margin-top: 5%;
+  width: 20%;
+  margin-left: 20px;
+}
+.tile-select .tile-wrap .cell-1-2 #cell-bus img {
+  float: left;
+  margin-left: 15%;
+  margin-top: 10%;
+}
+.tile-select .tile-wrap .cell-1-2 #cell-bus h2 {
+  float: left;
+  margin-left: 10%;
+  margin-top: 20%;
+}
+.tile-select .tile-wrap .cell-1 #cell-onecard {
+  margin-top: 15%;
+}
+.tile-select .tile-wrap .cell-2 #replace {
+  float: right;
+}
+.tile-select .tile-wrap .cell-2 #cell-notify {
+  margin-top: 10%;
+  margin-left: 10%;
+}

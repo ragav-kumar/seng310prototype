@@ -385,9 +385,80 @@ main {
 			}
 		}
 	}
+	
 }
 .jq-flipswitch {
 	&.jq-flipper-left { background-color: #555; }
 	&.jq-flipper-right { background-color: #0e0; }
 }
+
+//for tile select page
+.tile-select{
+	.tile-wrap{
+		.row{
+			.cell{
+				background-color: @gray;
+				color: #000;
+			}
+		}
+		#cell-news{
+			background-color: @gray;
+		}
+		#xmark{
+			position: absolute;
+			left: 0;
+		}
+		#replace{
+			float: right;
+		}
+		.cell-1-2{
+			#replace{
+				float: right;
+				widows: 20%;
+			}
+			#cell-classes{
+				img{
+					float: left;
+					margin-left: 10%;
+					margin-top: 0;
+					height: 70px;
+				}
+				h2{
+					float: left;
+					margin-top: 5%;
+					width: 20%;
+					margin-left: 20px;
+				}
+			}
+			#cell-bus{
+				img{
+					float: left;
+					margin-left: 15%;
+					margin-top: 10%;
+				}
+				h2{
+					float: left;
+					margin-left: 10%;
+					margin-top: 20%;
+				}
+			}
+		}
+		.cell-1{
+
+			#cell-onecard{
+				margin-top: 15%;
+			}
+		}
+		.cell-2{
+			#replace{
+				float: right;
+			}
+			#cell-notify{
+				margin-top: 10%;
+				margin-left: 10%;
+			}
+		}
+	}
+}
+
 //------------------------------------------------------------------------------
