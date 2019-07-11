@@ -122,12 +122,15 @@ main {
 					width: ~"calc(50% - 10px)";
 				}
 				.cell-empty {
-					border: 10px dashed gray;
-					border-radius: 10px;
-					font-size: 98px;
-					font-weight: 900;
-					color: gray;
 					text-align: center;
+					.empty-plus {
+						font-size: 98px;
+						font-weight: 900;
+						line-height: 1em;
+					}
+					.empty-text {
+						font-size: 25px;
+					}
 				}
 				.lock-icon {
 					position: absolute;
@@ -384,6 +387,29 @@ main {
 				}
 			}
 		}
+		&.popup-tiles {
+			h2 {
+				text-align: left;
+				margin-bottom: .5em;
+			}
+			ul {
+				list-style-type: none;
+				li {
+					font-size: 20px;
+					a {
+						display: flex;
+						justify-content: left;
+						align-items: center;
+					}
+					margin-bottom: .2em;
+					img {
+						width: 33px;
+						height: auto;
+						margin-right: 1em;
+					}
+				}
+			}
+		}
 	}
 	
 }
@@ -393,7 +419,7 @@ main {
 }
 
 //for tile select page
-.tile-select{
+.tile-select {
 	.tile-wrap{
 		.row{
 			.cell{
@@ -447,6 +473,26 @@ main {
 			}
 		}
 	}
+	footer {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		a {
+			color: white;
+			font-weight: bold;
+			font-size: 30px;
+			border-radius: 8px;
+			padding: 10px 20px;
+			margin: 0 10px;
+		}
+		.tile-select-save { background-color: @blue; }
+		.tile-select-cancel { background-color: #4f4f4f; }
+	}
+	.popup {
+		margin: 20px;
+		background-color: @gray;
+		color: black;
+		height: 698px;
+	}
 }
-
 //------------------------------------------------------------------------------

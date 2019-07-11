@@ -76,16 +76,40 @@ $(function () {
 		$(".popup-wrap").show();
 		$(".popup-login").show();
 	});
-	// Tile customizer
-	let tileReplace = (caller) => {
-		if ($(this).parent(".cell").hasClass("cell-1-2")) { // double wide
-			//TODO:
-		}
+	//----------Tile customizer
+	$(".cancel-tile-select").click(function(e){
+		e.preventDefault();
+		$(".popup-wrap").hide();
+		$(".popup-tiles").hide();
+	});
+	var insertRow;
+	var insertCell;
+	function showTileDialog() {
+		console.log("show");
+		$(".popup-wrap").show();
+		$(".popup-tiles").show();
 	}
-	let tileRemove = (caller) => {
-		if ($(this).parent(".cell").hasClass("cell-1-2")) { // double wide
-			//TODO:
-		}
+	function tileReplace() {
+		insertRow = 2;
+		insertCell = 2;
+		showTileDialog();
+	}
+	let tileRemove = () => {
+		// For demo, only defined for timetable tile
+		$(".row-1").html(`
+		<div class="cell cell-1">
+			<div class="cell-empty">
+				<div class="empty-plus">+</div>
+				<div class="empty-text">Tap to add</div>
+			</div>
+		</div>
+		<div class="cell cell-2">
+			<div class="cell-empty">
+				<div class="empty-plus">+</div>
+				<div class="empty-text">Tap to add</div>
+			</div>
+		</div>
+		`);
 	}
 	(function() { 
 
@@ -113,7 +137,12 @@ $(function () {
 		$( selector ).on( 'mouseup', function( e ) {
 			$(this).removeClass("bigX");
 			if ( new Date().getTime() >= ( start + longpress )  ) {
-				alert('long press!');
+				if ($(this).hasClass("xmark") && $(this).parents(".row-1").length) {
+					//remove action
+					tileRemove();
+				} else if ($(this).hasClass("replace") && $(this).parents(".row-0").length) {
+					tileReplace();
+				}
 			}
 		} );
 	

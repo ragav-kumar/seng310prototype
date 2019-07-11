@@ -35,11 +35,28 @@
 		<!-- --------------------------------------------------------------- -->
 		<main>
 			<!-- floaters -->
-			<div class="popup-settings">
-				<!-- TODO: -->
-			</div>
-			<div class="popup-tiles">
-				<!-- TODO: -->
+			<div class="popup-wrap">
+				<div class="popup popup-tiles">
+				 	<a class="cancel-tile-select" href="#"><img src="img/back-button.png" alt="back"></a>
+					<h2>Choose Features</h2>
+					<h3>Two-Tile:</h3>
+					<ul>
+						<li><a href="#" class="tile-choice disabled" data-tile="news"><img src="img/newspaper.png"><span>Campus News</span></a></li>
+						<li><a href="#" class="tile-choice disabled" data-tile="timetable"><img src="img/book.png"><span>Timetable</span></a></li>
+						<li><a href="#" class="tile-choice disabled"><img src="img/bus.png"><span>Next Bus</span></a></li>
+					</ul>
+					<h3>One-Tile:</h3>
+					<ul>
+						<li><a href="#" class="tile-choice" data-tile="grades"><img src="img/exam.png"><span>Course Grades</span></a></li>
+						<li><a href="#" class="tile-choice disabled"><img src="img/onecard.png"><span>OneCard</span></a></li>
+						<li><a href="#" class="tile-choice"><img src="img/register.png"><span>Registration</span></a></li>
+						<li><a href="#" class="tile-choice"><img src="img/contacts-book-outline.png"><span>Room Booking</span></a></li>
+						<li><a href="#" class="tile-choice" data-tile="library"><img src="img/living-room-books-group.png"><span>Library</span></a></li>
+						<li><a href="#" class="tile-choice"><img src="img/canteen.png"><span>Canteen</span></a></li>
+						<li><a href="#" class="tile-choice"><img src="img/placeholder.png"><span>Map</span></a></li>
+						<li><a href="#" class="tile-choice" data-tile="faq"><img src="img/help.png"><span>FAQ</span></a></li>
+					</ul>
+				</div>
 			</div>
 			<!-- Content area -->
 			<div class="tile-wrap">
@@ -99,8 +116,8 @@
 		<!-- CONTENT AREA ENDS -->
 		<!-- --------------------------------------------------------------- -->
 		<footer>
-			<a href="#" class="button">Save</a>
-			<a href="#" class="button">Cancel</a>
+			<a href="loggedin.html" class="tile-select-save">Save</a>
+			<a href="loggedin.html" class="tile-select-cancel">Cancel</a>
 		</footer>
 		</div>
 	</body>

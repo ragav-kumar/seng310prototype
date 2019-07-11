@@ -114,12 +114,15 @@ main .tile-wrap .row .cell .cell-2 {
   width: calc(50% - 10px);
 }
 main .tile-wrap .row .cell .cell-empty {
-  border: 10px dashed gray;
-  border-radius: 10px;
+  text-align: center;
+}
+main .tile-wrap .row .cell .cell-empty .empty-plus {
   font-size: 98px;
   font-weight: 900;
-  color: gray;
-  text-align: center;
+  line-height: 1em;
+}
+main .tile-wrap .row .cell .cell-empty .empty-text {
+  font-size: 25px;
 }
 main .tile-wrap .row .cell .lock-icon {
   position: absolute;
@@ -356,6 +359,27 @@ main .tile-wrap .row #cell-news div ul {
   width: 50%;
   border-bottom-right-radius: 8px;
 }
+.popup-wrap .popup.popup-tiles h2 {
+  text-align: left;
+  margin-bottom: .5em;
+}
+.popup-wrap .popup.popup-tiles ul {
+  list-style-type: none;
+}
+.popup-wrap .popup.popup-tiles ul li {
+  font-size: 20px;
+  margin-bottom: .2em;
+}
+.popup-wrap .popup.popup-tiles ul li a {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+.popup-wrap .popup.popup-tiles ul li img {
+  width: 33px;
+  height: auto;
+  margin-right: 1em;
+}
 .jq-flipswitch.jq-flipper-left {
   background-color: #555;
 }
@@ -414,4 +438,29 @@ main .tile-wrap .row #cell-news div ul {
 }
 .tile-select .tile-wrap .cell-tile.cell-tile-double h3 {
   margin-left: 20px;
+}
+.tile-select footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.tile-select footer a {
+  color: white;
+  font-weight: bold;
+  font-size: 30px;
+  border-radius: 8px;
+  padding: 10px 20px;
+  margin: 0 10px;
+}
+.tile-select footer .tile-select-save {
+  background-color: #005493;
+}
+.tile-select footer .tile-select-cancel {
+  background-color: #4f4f4f;
+}
+.tile-select .popup {
+  margin: 20px;
+  background-color: #e0e0e0;
+  color: black;
+  height: 698px;
 }
