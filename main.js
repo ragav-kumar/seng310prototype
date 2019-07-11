@@ -168,9 +168,9 @@ $(function () {
 		switch ($(this).data("tile")) {
 			case "faq":
 				newTile = `<img id="cell-icon" src="img/help.png"><h3>FAQ</h3>`;
-				if (insertRow==1) {
-					alert("Due to technical limitations of mocking up this prototype in a browser (as opposed to an app), please complete the next subtask before saving and leaving the customizer.");
-				}
+				// if (insertRow==1) {
+				// 	alert("Due to technical limitations of mocking up this prototype in a browser (as opposed to an app), please complete the next subtask before saving and leaving the customizer.");
+				// }
 				break;
 			case "grades":
 				newTile = `<img id="cell-icon" src="img/exam.png"><h3>Course Grades</h3>`;
