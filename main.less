@@ -405,6 +405,14 @@ main {
 		.xmark, .replace {
 			position: absolute;
 			top: 0;
+			width: 32px;
+			-webkit-transition: width 1s ease;
+			transition: width 1s ease;
+			&.bigX {
+				-webkit-transition: width 1s ease;
+				transition: width 1s ease;
+				width: 64px;
+			}
 		}
 		.xmark { left: 0; }
 		.replace { right: 0; }

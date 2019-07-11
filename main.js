@@ -76,5 +76,47 @@ $(function () {
 		$(".popup-wrap").show();
 		$(".popup-login").show();
 	});
+	// Tile customizer
+	let tileReplace = (caller) => {
+		if ($(this).parent(".cell").hasClass("cell-1-2")) { // double wide
+			//TODO:
+		}
+	}
+	let tileRemove = (caller) => {
+		if ($(this).parent(".cell").hasClass("cell-1-2")) { // double wide
+			//TODO:
+		}
+	}
+	(function() { 
+
+		// how many milliseconds is a long press?
+		let longpress = 1000;
+		// holds the start time
+		let start;
+		let selector = ".xmark, .replace";
+		
+		$( selector ).on( 'mousedown', function( e ) {
+			start = new Date().getTime();
+			$(this).addClass("bigX");
+			setTimeout(() => {
+				if ($(this).hasClass("bigX")) {
+					$(this).trigger("mouseup");
+				}
+			}, 1000);
+		} );
+	
+		$( selector ).on( 'mouseleave', function( e ) {
+			start = 0;
+			$(this).removeClass("bigX");
+		} );
+	
+		$( selector ).on( 'mouseup', function( e ) {
+			$(this).removeClass("bigX");
+			if ( new Date().getTime() >= ( start + longpress )  ) {
+				alert('long press!');
+			}
+		} );
+	
+	}());
 	// ----- jQuery ends here -----
 });

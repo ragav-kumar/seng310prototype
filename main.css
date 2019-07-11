@@ -371,6 +371,15 @@ main .tile-wrap .row #cell-news div ul {
 .tile-select .tile-wrap .replace {
   position: absolute;
   top: 0;
+  width: 32px;
+  -webkit-transition: width 1s ease;
+  transition: width 1s ease;
+}
+.tile-select .tile-wrap .xmark.bigX,
+.tile-select .tile-wrap .replace.bigX {
+  -webkit-transition: width 1s ease;
+  transition: width 1s ease;
+  width: 64px;
 }
 .tile-select .tile-wrap .xmark {
   left: 0;
