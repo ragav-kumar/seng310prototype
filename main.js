@@ -114,20 +114,20 @@ $(function () {
 	(function() { 
 
 		// how many milliseconds is a long press?
-		let longpress = 1000;
+		let longpress = 200;
 		// holds the start time
 		let start;
 		let selector = ".xmark, .replace";
 
-		$("body").on("click", selector, function(e) {
+		/* $("body").on("click", selector, function(e) {
 			if ($(this).hasClass("xmark") && $(this).parents(".row-1").length) {
 				//remove action
 				tileRemove(1);
 			} else if ($(this).hasClass("replace") && $(this).parents(".row-0").length) {
 				tileReplace();
 			}
-		});
-		/*
+		}); */
+		
 		$( "body" ).on( 'mousedown', selector, function( e ) {
 			start = new Date().getTime();
 			$(this).addClass("bigX");
@@ -135,7 +135,7 @@ $(function () {
 				if ($(this).hasClass("bigX")) {
 					$(this).trigger("mouseup");
 				}
-			}, 1000);
+			}, 200);
 		} );
 	
 		$( "body" ).on( 'mouseleave', selector, function( e ) {
@@ -153,7 +153,7 @@ $(function () {
 					tileReplace();
 				}
 			}
-		} );*/
+		} );
 	
 	}());
 	$(".tile-choice").click(function(e) {
