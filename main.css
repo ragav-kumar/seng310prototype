@@ -113,17 +113,6 @@ main .tile-wrap .row .cell .cell-1,
 main .tile-wrap .row .cell .cell-2 {
   width: calc(50% - 10px);
 }
-main .tile-wrap .row .cell .cell-empty {
-  text-align: center;
-}
-main .tile-wrap .row .cell .cell-empty .empty-plus {
-  font-size: 98px;
-  font-weight: 900;
-  line-height: 1em;
-}
-main .tile-wrap .row .cell .cell-empty .empty-text {
-  font-size: 25px;
-}
 main .tile-wrap .row .cell .lock-icon {
   position: absolute;
   top: 5px;
@@ -134,7 +123,7 @@ main .tile-wrap .row .cell .lock-icon {
 main .tile-wrap .row #cell-classes {
   padding: 0%;
   margin: 0%;
-  text-align: center;
+  text-align: left;
 }
 main .tile-wrap .row #cell-classes.cell-locked {
   display: flex;
@@ -395,6 +384,17 @@ main .tile-wrap .row #cell-news div ul {
   background-color: #e0e0e0;
   color: #000;
   overflow: hidden;
+}
+.tile-select .tile-wrap .row .cell .cell-empty {
+  text-align: center;
+}
+.tile-select .tile-wrap .row .cell .cell-empty .empty-plus {
+  font-size: 98px;
+  font-weight: 900;
+  line-height: 1em;
+}
+.tile-select .tile-wrap .row .cell .cell-empty .empty-text {
+  font-size: 25px;
 }
 .tile-select .tile-wrap .xmark,
 .tile-select .tile-wrap .replace {

@@ -34,7 +34,7 @@ $(function () {
 	});
 	$(".notification-icon").click(function (e) {
 		e.preventDefault();
-		alert("Notification window not implemented yet");
+		alert("Due to technical difficulties, Notifications have been disabled for this demo.");
 	});
 	$("body.logged-in .settings-icon").click(function (e) {
 		e.preventDefault();
@@ -185,5 +185,10 @@ $(function () {
 		insertCell = $(this).parents(".cell-1").length ? 1 : 2;
 		showTileDialog();
 	});
-	// ----- jQuery ends here -----
+	
+	// How do we show correct tiles in logged in view? We use GET.
+	function loggedinTiles() {
+		var queryDict = {};
+		location.search.substr(1).split("&").forEach(function(item) {queryDict[item.split("=")[0]] = item.split("=")[1]});
+	}
 });

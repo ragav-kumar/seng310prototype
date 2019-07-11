@@ -122,15 +122,7 @@ main {
 					width: ~"calc(50% - 10px)";
 				}
 				.cell-empty {
-					text-align: center;
-					.empty-plus {
-						font-size: 98px;
-						font-weight: 900;
-						line-height: 1em;
-					}
-					.empty-text {
-						font-size: 25px;
-					}
+					
 				}
 				.lock-icon {
 					position: absolute;
@@ -143,7 +135,7 @@ main {
 			#cell-classes{
 				padding: 0%;
 				margin: 0%;
-				text-align: center;
+				text-align: left;
 				&.cell-locked {
 					display: flex;
 					align-items: center;
@@ -431,6 +423,17 @@ main {
 				background-color: @gray;
 				color: #000;
 				overflow: hidden;
+				.cell-empty {
+					text-align: center;
+					.empty-plus {
+						font-size: 98px;
+						font-weight: 900;
+						line-height: 1em;
+					}
+					.empty-text {
+						font-size: 25px;
+					}
+				}
 			}
 		}
 		.xmark, .replace {
