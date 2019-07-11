@@ -111,7 +111,7 @@ $(function () {
 		</div>
 		`);
 	}
-	$("body").on("click", ".xmark, .replace", function(e) {
+	/* $("body").on("click", ".xmark, .replace", function(e) {
 		$(this).addClass("bigX");
 		setTimeout(() => {
 			$(this).removeClass("bigX");	
@@ -122,8 +122,8 @@ $(function () {
 				tileReplace();
 			}
 		}, 200);
-	});
-	/*(function() { 
+	}); */
+	(function() { 
 
 		// how many milliseconds is a long press?
 		let longpress = 200;
@@ -132,6 +132,7 @@ $(function () {
 		let selector = ".xmark, .replace";
 		
 		$( "body" ).on( 'mousedown', selector, function( e ) {
+			e.preventDefault();
 			start = new Date().getTime();
 			$(this).addClass("bigX");
 			setTimeout(() => {
@@ -142,11 +143,13 @@ $(function () {
 		} );
 	
 		$( "body" ).on( 'mouseleave', selector, function( e ) {
+			e.preventDefault();
 			start = 0;
 			$(this).removeClass("bigX");
 		} );
 	
 		$( "body" ).on( 'mouseup', selector, function( e ) {
+			e.preventDefault();
 			$(this).removeClass("bigX");
 			if ( new Date().getTime() >= ( start + longpress )  ) {
 				if ($(this).hasClass("xmark") && $(this).parents(".row-1").length) {
@@ -158,7 +161,7 @@ $(function () {
 			}
 		} );
 	
-	}());*/
+	}());
 	$(".tile-choice").click(function(e) {
 		e.preventDefault();
 		if ($(this).hasClass("disabled")) {
