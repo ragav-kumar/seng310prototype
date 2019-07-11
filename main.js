@@ -118,7 +118,16 @@ $(function () {
 		// holds the start time
 		let start;
 		let selector = ".xmark, .replace";
-		
+
+		$("body").on("click", selector, function(e) {
+			if ($(this).hasClass("xmark") && $(this).parents(".row-1").length) {
+				//remove action
+				tileRemove(1);
+			} else if ($(this).hasClass("replace") && $(this).parents(".row-0").length) {
+				tileReplace();
+			}
+		});
+		/*
 		$( "body" ).on( 'mousedown', selector, function( e ) {
 			start = new Date().getTime();
 			$(this).addClass("bigX");
@@ -144,7 +153,7 @@ $(function () {
 					tileReplace();
 				}
 			}
-		} );
+		} );*/
 	
 	}());
 	$(".tile-choice").click(function(e) {
