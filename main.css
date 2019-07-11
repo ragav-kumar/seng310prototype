@@ -379,6 +379,64 @@ main .tile-wrap .row #cell-news div ul {
   height: auto;
   margin-right: 1em;
 }
+.popup-wrap .popup.popup-notify {
+  background-color: #e0e0e0;
+  color: black;
+  position: relative;
+  padding: 0;
+  border-radius: 8px;
+  height: 436px;
+}
+.popup-wrap .popup.popup-notify h2 {
+  text-align: left;
+  margin-left: 50px;
+}
+.popup-wrap .popup.popup-notify a {
+  position: absolute;
+  top: 17px;
+  right: 7px;
+}
+.popup-wrap .popup.popup-notify ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+.popup-wrap .popup.popup-notify ul .circle {
+  background-color: #1673D0;
+  border-radius: 50%;
+  height: 20px;
+  width: 20px;
+  position: absolute;
+  left: 20px;
+}
+.popup-wrap .popup.popup-notify ul li {
+  position: relative;
+  color: #828282;
+  font-size: 18px;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  width: 100%;
+  margin: 0;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  height: 100px;
+}
+.popup-wrap .popup.popup-notify ul li span {
+  padding: 20px 20px 20px 50px;
+}
+.popup-wrap .popup.popup-notify ul li.new-notification {
+  color: #1673D0;
+}
+.popup-wrap .popup.popup-notify .notify-bottom {
+  height: 70px;
+  font-size: 28px;
+  color: #1673D0;
+  text-align: center;
+  width: 100%;
+  margin: 0;
+  padding: 20px;
+}
 .jq-flipswitch.jq-flipper-left {
   background-color: #555;
 }

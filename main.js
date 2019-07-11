@@ -32,9 +32,11 @@ $(function () {
 		e.preventDefault();
 		alert("This would open uvic webmail in a simulated browser view.");
 	});
-	$(".notification-icon").click(function (e) {
+	$("body.logged-in .notification-icon").click(function (e) {
 		e.preventDefault();
-		alert("Due to technical difficulties, Notifications have been disabled for this demo.");
+		$(".popup-wrap").show();
+		$(".popup-notify").show();
+		// alert("Due to technical difficulties, Notifications have been disabled for this demo.");
 	});
 	$("body.logged-in .settings-icon").click(function (e) {
 		e.preventDefault();
@@ -206,4 +208,9 @@ $(function () {
 		var queryDict = {};
 		location.search.substr(1).split("&").forEach(function(item) {queryDict[item.split("=")[0]] = item.split("=")[1]});
 	}
+	$(".popup-notify a").click(function(e) {
+		e.preventDefault();
+		$(".popup-wrap").hide();
+		$(".popup-notify").hide();
+	})
 });

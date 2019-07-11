@@ -409,6 +409,67 @@ main {
 				}
 			}
 		}
+		&.popup-notify {
+			background-color: @gray;
+			color: black;
+			position: relative;
+			padding: 0;
+			border-radius: 8px;
+			height: 436px;
+			h2 {
+				text-align: left;
+				margin-left: 50px;
+			}
+			a {
+				position: absolute;
+				top: 17px;
+				right: 7px;
+			}
+			ul {
+				list-style-type: none;
+				padding: 0;
+				margin: 0;
+				.circle {
+					background-color: #1673D0;
+					border-radius: 50%;
+					height: 20px;
+					width: 20px;
+					position: absolute;
+					left: 20px;
+					// top: 0;
+				}
+				li {
+					position: relative;
+					color: #828282;
+					font-size: 18px;
+					border-top: 1px solid black;
+					border-bottom: 1px solid black;
+					width: 100%;
+					margin: 0;
+					display: flex;
+					justify-content: left;
+					align-items: center;
+					height: 100px;
+					span {
+						padding: 20px 20px 20px 50px;
+					}
+					&.new-notification {
+						// list-style-type: disc;
+						color: #1673D0;
+					}
+				}
+			}
+			.notify-bottom {
+				height: 70px;
+				font-size: 28px;
+				color: #1673D0;
+				text-align: center;
+				width: 100%;
+				margin: 0;
+				padding: 20px;
+
+			}
+		}
 	}
 	
 }
