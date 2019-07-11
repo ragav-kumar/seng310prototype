@@ -376,6 +376,31 @@ main .tile-wrap .row #cell-news div ul {
 .tile-select .tile-wrap #replace {
   float: right;
 }
+.tile-select .tile-wrap .row-0 {
+  margin: 6px;
+  border: solid 1px;
+  background-color: #e0e0e0;
+}
+.tile-select .tile-wrap .row-0 div {
+  margin: 0%;
+  padding: 0%;
+}
+.tile-select .tile-wrap .row-0 #xmark {
+  position: relative;
+  float: left;
+}
+.tile-select .tile-wrap .row-0 #replace {
+  float: right;
+}
+.tile-select .tile-wrap .row-0 #news {
+  float: left;
+  margin-top: 10%;
+}
+.tile-select .tile-wrap .row-0 h2 {
+  float: left;
+  margin-top: 20%;
+  margin-left: 15px;
+}
 .tile-select .tile-wrap .cell-1-2 #replace {
   float: right;
   widows: 20%;
@@ -383,14 +408,15 @@ main .tile-wrap .row #cell-news div ul {
 .tile-select .tile-wrap .cell-1-2 #cell-classes img {
   float: left;
   margin-left: 10%;
-  margin-top: 0;
+  margin-top: 10%;
   height: 70px;
 }
 .tile-select .tile-wrap .cell-1-2 #cell-classes h2 {
   float: left;
   margin-top: 5%;
   width: 20%;
-  margin-left: 20px;
+  margin-left: 25px;
+  margin-top: 15%;
 }
 .tile-select .tile-wrap .cell-1-2 #cell-bus img {
   float: left;
@@ -406,7 +432,8 @@ main .tile-wrap .row #cell-news div ul {
   margin-top: 15%;
 }
 .tile-select .tile-wrap .cell-2 #replace {
-  float: right;
+  position: relative;
+  right: 0%;
 }
 .tile-select .tile-wrap .cell-2 #cell-notify {
   margin-top: 10%;
