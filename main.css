@@ -20,7 +20,7 @@ html body {
 html body #wrap {
   width: 375px;
   height: 740px;
-  background-image: url("img/uvic-wallpaper.png");
+  background-image: url("img/uvic-wallpaper-new.png");
   background-size: cover;
   background-position: center center;
 }
