@@ -370,6 +370,11 @@ main .tile-wrap .row #cell-news div ul {
   font-size: 20px;
   margin-bottom: .2em;
 }
+.popup-wrap .popup.popup-tiles ul li .disabled {
+  opacity: 0.7;
+  color: #333;
+  cursor: default;
+}
 .popup-wrap .popup.popup-tiles ul li a {
   display: flex;
   justify-content: left;
@@ -416,6 +421,9 @@ main .tile-wrap .row #cell-news div ul {
   height: 100%;
   padding: 10px;
   text-align: center;
+}
+.tile-select .tile-wrap .cell-tile.cell-empty {
+  padding: 0;
 }
 .tile-select .tile-wrap .cell-tile * {
   display: inline-block;

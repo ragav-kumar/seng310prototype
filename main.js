@@ -90,21 +90,21 @@ $(function () {
 		$(".popup-tiles").show();
 	}
 	function tileReplace() {
-		insertRow = 2;
-		insertCell = 2;
+		insertRow = 0;
+		insertCell = 1;
 		showTileDialog();
 	}
-	let tileRemove = () => {
+	let tileRemove = (row) => {
 		// For demo, only defined for timetable tile
-		$(".row-1").html(`
+		$(".row-" + row).html(`
 		<div class="cell cell-1">
-			<div class="cell-empty">
+			<div class="cell-tile cell-empty">
 				<div class="empty-plus">+</div>
 				<div class="empty-text">Tap to add</div>
 			</div>
 		</div>
 		<div class="cell cell-2">
-			<div class="cell-empty">
+			<div class="cell-tile cell-empty">
 				<div class="empty-plus">+</div>
 				<div class="empty-text">Tap to add</div>
 			</div>
@@ -119,7 +119,7 @@ $(function () {
 		let start;
 		let selector = ".xmark, .replace";
 		
-		$( selector ).on( 'mousedown', function( e ) {
+		$( "body" ).on( 'mousedown', selector, function( e ) {
 			start = new Date().getTime();
 			$(this).addClass("bigX");
 			setTimeout(() => {
@@ -129,17 +129,17 @@ $(function () {
 			}, 1000);
 		} );
 	
-		$( selector ).on( 'mouseleave', function( e ) {
+		$( "body" ).on( 'mouseleave', selector, function( e ) {
 			start = 0;
 			$(this).removeClass("bigX");
 		} );
 	
-		$( selector ).on( 'mouseup', function( e ) {
+		$( "body" ).on( 'mouseup', selector, function( e ) {
 			$(this).removeClass("bigX");
 			if ( new Date().getTime() >= ( start + longpress )  ) {
 				if ($(this).hasClass("xmark") && $(this).parents(".row-1").length) {
 					//remove action
-					tileRemove();
+					tileRemove(1);
 				} else if ($(this).hasClass("replace") && $(this).parents(".row-0").length) {
 					tileReplace();
 				}
@@ -147,5 +147,43 @@ $(function () {
 		} );
 	
 	}());
+	$(".tile-choice").click(function(e) {
+		e.preventDefault();
+		if ($(this).hasClass("disabled")) {
+			return;
+		}
+		let newTile;
+		switch ($(this).data("tile")) {
+			case "faq":
+				newTile = `<img id="cell-icon" src="img/help.png"><h3>FAQ</h3>`;
+				break;
+			case "grades":
+				newTile = `<img id="cell-icon" src="img/exam.png"><h3>Course Grades</h3>`;
+				break;
+			case "library":
+				newTile = `<img id="cell-icon" src="img/living-room-books-group.png"><h3>Library</h3>`;
+				break;
+			default:
+				return;
+		}
+		newTile = "<img class=\"xmark\" src=\"img/x-mark.png\"><img class=\"replace\" src=\"img/replace.png\"><div class=\"cell-tile cell-tile-single\">" + newTile + "</div>";
+		$(".popup-wrap").hide();
+		$(".popup-tiles").hide();
+		// Check if we're in row 0. If yes, this is a replace.
+		if (insertRow == 0 && $(".row-0 .cell-1-2").length) {
+			// First delete.
+			tileRemove(0);
+		}
+		// Insert new tile
+		let selector = ".row-" + insertRow + " .cell-" + insertCell;
+		// console.log(selector);
+		// console.log(newTile);
+		$(selector).html(newTile);
+	});
+	$(".tile-wrap").on("click", ".cell-empty", function() {
+		insertRow = $(this).parents(".row-0").length ? 0 : 1;
+		insertCell = $(this).parents(".cell-1").length ? 1 : 2;
+		showTileDialog();
+	});
 	// ----- jQuery ends here -----
 });
