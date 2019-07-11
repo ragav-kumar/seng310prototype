@@ -399,95 +399,43 @@ main {
 			.cell{
 				background-color: @gray;
 				color: #000;
+				overflow: hidden;
 			}
 		}
-		#cell-news{
-			background-color: @gray;
-		}
-		#xmark{
+		.xmark, .replace {
 			position: absolute;
-			left: 0;
+			top: 0;
 		}
-		#replace{
-			float: right;
-		}
-		.row-0{
-			margin: 6px;
-			border: solid 1px;
-			background-color: @gray;
-			div{
-				margin: 0%;
-				padding: 0%;
+		.xmark { left: 0; }
+		.replace { right: 0; }
+		.cell-tile {
+			width: 100%;
+			height: 100%;
+			padding: 10px;
+			text-align: center;
+			* {
+				display: inline-block;
 			}
-			#xmark{
-				position: relative;
-				float: left;
-			}
-			#replace{
-				// position: relative;
-				// right: 0%;
-				float: right;
-				// border: solid;
-				// margin: 0%;
-			}
-			#news{
-				float: left;
-				margin-top: 10%;
-			}
-			h2{
-				float: left;
-				margin-top: 20%;
-				margin-left: 15px;
-			}
-
-		}
-		.cell-1-2{
-			#replace{
-				float: right;
-				widows: 20%;
-			}
-			#cell-classes{
-				img{
-					float: left;
-					margin-left: 10%;
-					margin-top: 10%;
-					height: 70px;
+			&.cell-tile-single {
+				img {
+					width: 85px;
+					margin: 0 auto;
 				}
-				h2{
-					float: left;
-					margin-top: 5%;
-					width: 20%;
-					margin-left: 25px;
-					margin-top: 15%;
+				h3 {
+					display: block;
+					margin: 5px auto;
 				}
 			}
-			#cell-bus{
-				img{
-					float: left;
-					margin-left: 15%;
-					margin-top: 10%;
+			&.cell-tile-double {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				img {
+					margin-right: 20px;
 				}
-				h2{
-					float: left;
-					margin-left: 10%;
-					margin-top: 20%;
+				h3 {
+					margin-left: 20px;
 				}
-			}
-		}
-		.cell-1{
-
-			#cell-onecard{
-				margin-top: 15%;
-			}
-		}
-		.cell-2{
-			#replace{
-				position: relative;
-				right: 0%;
-			}
-			#cell-notify{
-				margin-top: 10%;
-				margin-left: 10%;
 			}
 		}
 	}

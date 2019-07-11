@@ -365,77 +365,44 @@ main .tile-wrap .row #cell-news div ul {
 .tile-select .tile-wrap .row .cell {
   background-color: #e0e0e0;
   color: #000;
+  overflow: hidden;
 }
-.tile-select .tile-wrap #cell-news {
-  background-color: #e0e0e0;
-}
-.tile-select .tile-wrap #xmark {
+.tile-select .tile-wrap .xmark,
+.tile-select .tile-wrap .replace {
   position: absolute;
+  top: 0;
+}
+.tile-select .tile-wrap .xmark {
   left: 0;
 }
-.tile-select .tile-wrap #replace {
-  float: right;
+.tile-select .tile-wrap .replace {
+  right: 0;
 }
-.tile-select .tile-wrap .row-0 {
-  margin: 6px;
-  border: solid 1px;
-  background-color: #e0e0e0;
+.tile-select .tile-wrap .cell-tile {
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  text-align: center;
 }
-.tile-select .tile-wrap .row-0 div {
-  margin: 0%;
-  padding: 0%;
+.tile-select .tile-wrap .cell-tile * {
+  display: inline-block;
 }
-.tile-select .tile-wrap .row-0 #xmark {
-  position: relative;
-  float: left;
+.tile-select .tile-wrap .cell-tile.cell-tile-single img {
+  width: 85px;
+  margin: 0 auto;
 }
-.tile-select .tile-wrap .row-0 #replace {
-  float: right;
+.tile-select .tile-wrap .cell-tile.cell-tile-single h3 {
+  display: block;
+  margin: 5px auto;
 }
-.tile-select .tile-wrap .row-0 #news {
-  float: left;
-  margin-top: 10%;
+.tile-select .tile-wrap .cell-tile.cell-tile-double {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.tile-select .tile-wrap .row-0 h2 {
-  float: left;
-  margin-top: 20%;
-  margin-left: 15px;
+.tile-select .tile-wrap .cell-tile.cell-tile-double img {
+  margin-right: 20px;
 }
-.tile-select .tile-wrap .cell-1-2 #replace {
-  float: right;
-  widows: 20%;
-}
-.tile-select .tile-wrap .cell-1-2 #cell-classes img {
-  float: left;
-  margin-left: 10%;
-  margin-top: 10%;
-  height: 70px;
-}
-.tile-select .tile-wrap .cell-1-2 #cell-classes h2 {
-  float: left;
-  margin-top: 5%;
-  width: 20%;
-  margin-left: 25px;
-  margin-top: 15%;
-}
-.tile-select .tile-wrap .cell-1-2 #cell-bus img {
-  float: left;
-  margin-left: 15%;
-  margin-top: 10%;
-}
-.tile-select .tile-wrap .cell-1-2 #cell-bus h2 {
-  float: left;
-  margin-left: 10%;
-  margin-top: 20%;
-}
-.tile-select .tile-wrap .cell-1 #cell-onecard {
-  margin-top: 15%;
-}
-.tile-select .tile-wrap .cell-2 #replace {
-  position: relative;
-  right: 0%;
-}
-.tile-select .tile-wrap .cell-2 #cell-notify {
-  margin-top: 10%;
-  margin-left: 10%;
+.tile-select .tile-wrap .cell-tile.cell-tile-double h3 {
+  margin-left: 20px;
 }
