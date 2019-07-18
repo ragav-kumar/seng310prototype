@@ -33,32 +33,88 @@ var TiledContent = function (_React$Component) {
 
 		var _this = _possibleConstructorReturn(this, (TiledContent.__proto__ || Object.getPrototypeOf(TiledContent)).call(this, props));
 
+		_this.triggerCustomizerMode = function () {
+			_this.setState({
+				custMode: !_this.state.custMode
+			});
+		};
+
+		_this.insertTile = function (type) {
+			var rowName = "row" + _this.state.insertInto.row;
+			rowData = _this.state[rowName];
+			rowData[_this.state.insertInto.col - 1] = type;
+			// Enforce a tile on a specific row+col
+			_this.setState({
+				rowName: rowData
+			});
+		};
+
 		_this.state = {
 			row0: ["news", null],
 			row1: ["timetable", null],
 			row2: ["onecard", "registration"],
 			row3: ["nextbus", null],
-			custMode: false
+			custMode: false,
+			context: props.context,
+			insertInto: { row: 0, col: 1 }
 		};
-		_this.changeMode = _this.changeMode.bind(_this);
+		_this.state.context.subscribe(_this.triggerCustomizerMode, _this.insertTile);
+
+		_this.handleTileIcon = _this.handleTileIcon.bind(_this);
 		return _this;
 	}
+	// The only change is to move tiles into customizer mode.
+
 
 	_createClass(TiledContent, [{
-		key: "changeMode",
-		value: function changeMode(row) {
-			//TODO:
+		key: "handleTileIcon",
+		value: function handleTileIcon(row, col, action) {
+			// Identify row
+			console.log({ row: row, col: col, action: action });
+			var rowName = "row" + row;
+			rowData = this.state[rowName];
+			// Clear affected tile
+			rowData[col - 1] = null;
+			newState = { rowName: rowData };
+			// replace check
+			if (action === "replace") {
+				newState = Object.assign({}, newState, {
+					insertInto: { row: row, col: col }
+				});
+			}
+			this.setState(newState);
+			// Trigger customizer if necessary
+			if (action === "replace") {
+				this.state.context.showTileSelect();
+			}
 		}
 	}, {
 		key: "render",
 		value: function render() {
+			// console.log(this.state);
 			return React.createElement(
 				React.Fragment,
 				null,
-				React.createElement(Row, { rowNumber: "0", cells: this.state.row0, custMode: this.state.custMode, changeMode: this.changeMode }),
-				React.createElement(Row, { rowNumber: "1", cells: this.state.row1, custMode: this.state.custMode, changeMode: this.changeMode }),
-				React.createElement(Row, { rowNumber: "2", cells: this.state.row2, custMode: this.state.custMode, changeMode: this.changeMode }),
-				React.createElement(Row, { rowNumber: "3", cells: this.state.row3, custMode: this.state.custMode, changeMode: this.changeMode })
+				React.createElement(Row, { rowNumber: "0",
+					cells: this.state.row0,
+					custMode: this.state.custMode,
+					onTileIconClick: this.handleTileIcon
+				}),
+				React.createElement(Row, { rowNumber: "1",
+					cells: this.state.row1,
+					custMode: this.state.custMode,
+					onTileIconClick: this.handleTileIcon
+				}),
+				React.createElement(Row, { rowNumber: "2",
+					cells: this.state.row2,
+					custMode: this.state.custMode,
+					onTileIconClick: this.handleTileIcon
+				}),
+				React.createElement(Row, { rowNumber: "3",
+					cells: this.state.row3,
+					custMode: this.state.custMode,
+					onTileIconClick: this.handleTileIcon
+				})
 			);
 		}
 	}]);
@@ -76,49 +132,51 @@ var Row = function (_React$Component2) {
 
 		var _this2 = _possibleConstructorReturn(this, (Row.__proto__ || Object.getPrototypeOf(Row)).call(this, props));
 
-		_this2.state = {
-			left: props.cells[0],
-			right: props.cells[1]
-		};
-		_this2.handleDeleteReplace = _this2.handleDeleteReplace.bind(_this2);
-		_this2.handleInsert = _this2.handleInsert.bind(_this2);
+		_this2.passAlongClick = _this2.passAlongClick.bind(_this2);
 		return _this2;
 	}
 
 	_createClass(Row, [{
-		key: "handleDeleteReplace",
-		value: function handleDeleteReplace(e, col, action) {
-			this.setState(_defineProperty({}, col, null));
-			if (action === "replace") {
-				// Replace: Trigger Tile Selection
-				this.handleInsert(col);
-			}
-		}
-	}, {
-		key: "handleInsert",
-		value: function handleInsert(col) {
-			this.props.changeMode(e);
+		key: "passAlongClick",
+		value: function passAlongClick(row, col) {
+			var _this3 = this;
+
+			return function (action) {
+				_this3.props.onTileIconClick(row, col, action);
+			};
 		}
 	}, {
 		key: "render",
 		value: function render() {
+			var left = this.props.cells[0];
+			var right = this.props.cells[1];
 			var className = "Row Row-" + this.props.rowNumber;
+			var row = this.props.rowNumber;
 			var cells = void 0;
-			if (this.state.left && tile_sizes[this.state.left] === 2) {
+			if (left && tile_sizes[left] === 2) {
 				// Double cell
-				cells = React.createElement(DoubleTile, { type: this.state.left, custMode: this.props.custMode });
+				cells = React.createElement(DoubleTile, {
+					type: left,
+					custMode: this.props.custMode,
+					onTileIconClick: this.passAlongClick(row, 1)
+				});
 			} else {
-				cells = [];
-				if (this.state.left) {
-					cells.push(React.createElement(SingleTile, { key: "1", column: "1", type: this.state.left, custMode: this.props.custMode }));
-				} else {
-					cells.push(React.createElement(EmptyTile, { key: "1", column: "1", custMode: this.props.custMode }));
-				}
-				if (this.state.right) {
-					cells.push(React.createElement(SingleTile, { key: "2", column: "2", type: this.state.right, custMode: this.props.custMode }));
-				} else {
-					cells.push(React.createElement(EmptyTile, { key: "2", column: "2", custMode: this.props.custMode }));
-				}
+				cells = React.createElement(
+					React.Fragment,
+					null,
+					React.createElement(SingleTile, {
+						column: "1",
+						type: left,
+						custMode: this.props.custMode,
+						onTileIconClick: this.passAlongClick(row, 1)
+					}),
+					React.createElement(SingleTile, {
+						column: "2",
+						type: right,
+						custMode: this.props.custMode,
+						onTileIconClick: this.passAlongClick(row, 2)
+					})
+				);
 			}
 			return React.createElement(
 				"div",
@@ -134,27 +192,62 @@ var Row = function (_React$Component2) {
 
 
 function SingleTile(props) {
-	return React.createElement(Tile, {
-		className: "Tile-" + props.column,
-		type: props.type,
-		custMode: props.custMode
-	});
+	if (!props.type) {
+		return React.createElement(EmptyTile, {
+			className: "Tile-" + props.column,
+			custMode: props.custMode,
+			handleClick: props.onTileIconClick
+		});
+	} else {
+		return React.createElement(Tile, {
+			className: "Tile-" + props.column,
+			type: props.type,
+			custMode: props.custMode,
+			onTileIconClick: props.onTileIconClick
+		});
+	}
 }
 function DoubleTile(props) {
 	//Double Tiles cannot be empty, so no check
 	return React.createElement(Tile, {
 		className: "Tile-1-2",
 		type: props.type,
-		custMode: props.custMode
+		custMode: props.custMode,
+		onTileIconClick: props.onTileIconClick
 	});
 }
-// Always single size
+//------------------------------------------------------------------------------
 function EmptyTile(props) {
-	return React.createElement(Tile, {
-		className: "Tile-" + props.column + " Tile-empty",
-		type: "empty",
-		custMode: props.custMode
-	});
+	var className = "Tile-empty";
+	if (props.custMode) {
+		className += " Tile-customizer";
+		return React.createElement(
+			"div",
+			{ className: "Tile Tile-empty " + props.className },
+			React.createElement(
+				"div",
+				{ className: className, onClick: function onClick(e) {
+						return props.handleClick("replace");
+					} },
+				React.createElement(
+					"div",
+					{ className: "empty-plus" },
+					"+"
+				),
+				React.createElement(
+					"div",
+					{ className: "empty-text" },
+					"Tap to add"
+				)
+			)
+		);
+	} else {
+		return React.createElement(
+			"div",
+			{ className: "Tile Tile-empty " + props.className },
+			React.createElement("div", { className: className })
+		);
+	}
 }
 //------------------------------------------------------------------------------
 /**
@@ -162,91 +255,135 @@ function EmptyTile(props) {
  * Tiles vary based on their state (customizer on or off)
  * @param {*} props 
  */
-function Tile(props) {
-	var icons = null;
-	var contents = null;
-	if (props.custMode) {
-		// Customizer mode
-		var handleClick = function handleClick(e, action) {
-			return props.onClick(e, props.row, props.col, action);
+
+var Tile = function (_React$Component3) {
+	_inherits(Tile, _React$Component3);
+
+	function Tile(props) {
+		_classCallCheck(this, Tile);
+
+		var _this4 = _possibleConstructorReturn(this, (Tile.__proto__ || Object.getPrototypeOf(Tile)).call(this, props));
+
+		_this4.typeLabels = {
+			grades: "Course Grades",
+			registration: "Registration",
+			rooms: "Room Bookings",
+			library: "Library",
+			canteen: "Canteens",
+			faq: "FAQ",
+			map: "Map",
+			news: "Campus News",
+			timetable: "Timetable",
+			nextbus: "Next Bus",
+			onecard: "OneCard"
 		};
-		if (props.type !== "empty") {
-			icons = React.createElement(
-				React.Fragment,
-				null,
-				React.createElement("img", { className: "xmark", src: "img/x-mark.png", onClick: function onClick(e) {
-						return handleClick(e, "delete");
-					} }),
-				React.createElement("img", { className: "replace", src: "img/replace.png", onClick: function onClick(e) {
-						return handleClick(e, "replace");
-					} })
-			);
-		}
-		// In customizer mode, we just need to know if its empty.
-		if (props.type === "empty") {
-			// + sign
-			contents = React.createElement(
-				React.Fragment,
-				null,
-				React.createElement(
-					"div",
-					{ "class": "empty-plus" },
-					"+"
-				),
-				React.createElement(
-					"div",
-					{ "class": "empty-text" },
-					"Tap to add"
-				)
-			);
-		} else {
-			contents = React.createElement(
-				"div",
-				{ className: "Tile-inner" },
-				React.createElement("img", { className: "cell-icon", src: "img/" + props.title + ".png" }),
-				React.createElement(
-					"h3",
-					null,
-					props.title
-				)
-			);
-		}
-	} else {
-		// Determine what kind of tile to display.
-		switch (props.type) {
-			case "grades":
-			case "registration":
-			case "rooms":
-			case "library":
-			case "canteen":
-			case "faq":
-			case "map":
-				contents = React.createElement(TileSimple, { title: props.type });
-				break;
-			case "news":
-				contents = React.createElement(TileNews, null);
-				break;
-			case "timetable":
-				contents = React.createElement(TileTimetable, null);
-				break;
-			case "nextbus":
-				contents = React.createElement(TileNextBus, null);
-				break;
-			case "onecard":
-				contents = React.createElement(TileOneCard, null);
-				break;
-		}
+
+		_this4.state = {
+			bigX: false,
+			bigR: false
+		};
+		_this4.handleClick = _this4.handleClick.bind(_this4);
+		_this4.getContent = _this4.getContent.bind(_this4);
+		return _this4;
 	}
 
-	return React.createElement(
-		"div",
-		{ className: "Tile " + props.className },
-		icons,
-		contents
-	);
-}
+	_createClass(Tile, [{
+		key: "getContent",
+		value: function getContent(custMode, type) {
+			if (custMode) {
+				var size = tile_sizes[type] == 1 ? "Tile-cust-single" : "Tile-cust-double";
+				return React.createElement(
+					"div",
+					{ className: "Tile-customizer " + size },
+					React.createElement("img", { src: "img/" + type + ".png" }),
+					React.createElement(
+						"h3",
+						null,
+						this.typeLabels[type]
+					)
+				);
+			}
+			switch (type) {
+				case "grades":
+				case "registration":
+				case "rooms":
+				case "library":
+				case "canteen":
+				case "faq":
+				case "map":
+					return React.createElement(TileSimple, { title: type });
+				case "news":
+					return React.createElement(TileNews, null);
+				case "timetable":
+					return React.createElement(TileTimetable, null);
+				case "nextbus":
+					return React.createElement(TileNextBus, null);
+				case "onecard":
+					return React.createElement(TileOneCard, null);
+			}
+		}
+	}, {
+		key: "handleClick",
+		value: function handleClick(action) {
+			var _this5 = this;
+
+			if (action === "replace") {
+				this.setState({ bigR: true });
+			} else {
+				this.setState({ bigX: true });
+			}
+			setTimeout(function () {
+				_this5.setState({
+					bigR: false,
+					bigX: false
+				});
+				return _this5.props.onTileIconClick(action);
+			}, 200);
+		}
+	}, {
+		key: "render",
+		value: function render() {
+			var _this6 = this;
+
+			var icons = null;
+			if (this.props.custMode) {
+				// Customizer mode
+				var classX = this.state.bigX ? "xmark bigX" : "xmark";
+				var classR = this.state.bigR ? "replace bigR" : "replace";
+				icons = React.createElement(
+					React.Fragment,
+					null,
+					React.createElement("img", {
+						className: classX,
+						src: "img/x-mark.png",
+						onClick: function onClick(e) {
+							return _this6.handleClick("delete");
+						}
+					}),
+					React.createElement("img", {
+						className: classR,
+						src: "img/replace.png",
+						onClick: function onClick(e) {
+							return _this6.handleClick("replace");
+						}
+					})
+				);
+			}
+			return React.createElement(
+				"div",
+				{ className: "Tile " + this.props.className },
+				icons,
+				this.getContent(this.props.custMode, this.props.type)
+			);
+		}
+	}]);
+
+	return Tile;
+}(React.Component);
 //------------------------------------------------------------------------------
 // Tile Types
+
+
 function TileSimple(props) {
 	return React.createElement(
 		"div",
@@ -414,45 +551,6 @@ function TileTimetable(props) {
 		)
 	);
 }
-function TileNextBus(props) {
-	return React.createElement(
-		"div",
-		{ className: "TileNextBus" },
-		React.createElement(
-			"h2",
-			null,
-			"Next Bus"
-		),
-		React.createElement(
-			"ul",
-			{ className: "bus-list" },
-			React.createElement(
-				"li",
-				{ "data-bus": "7" },
-				React.createElement("i", { className: "fas fa-star" }),
-				"7 Uvic/Downton:Bay G 1:48pm"
-			),
-			React.createElement(
-				"li",
-				{ "data-bus": "11" },
-				React.createElement("i", { className: "fas fa-star" }),
-				"11 Tillicum Mall/Uvic: Bay H 1:58pm"
-			),
-			React.createElement(
-				"li",
-				{ "data-bus": "4" },
-				React.createElement("i", { className: "far fa-star" }),
-				"4 Uvic/Downtown: Bay A 1:50pm"
-			),
-			React.createElement(
-				"li",
-				{ "data-bus": "9" },
-				React.createElement("i", { className: "far fa-star" }),
-				"9 Royal Oak/Uvic: Bay E 1:52pm"
-			)
-		)
-	);
-}
 function TileOneCard(props) {
 	return React.createElement(
 		"div",
@@ -471,4 +569,84 @@ function TileOneCard(props) {
 	);
 }
 
-ReactDOM.render(React.createElement(TiledContent, null), document.querySelector('#TiledContent'));
+var TileNextBus = function (_React$Component4) {
+	_inherits(TileNextBus, _React$Component4);
+
+	function TileNextBus(props) {
+		_classCallCheck(this, TileNextBus);
+
+		var _this7 = _possibleConstructorReturn(this, (TileNextBus.__proto__ || Object.getPrototypeOf(TileNextBus)).call(this, props));
+
+		_this7.state = {
+			a: "fas",
+			b: "fas",
+			c: "far",
+			d: "far"
+		};
+		_this7.handleClick = _this7.handleClick.bind(_this7);
+		return _this7;
+	}
+
+	_createClass(TileNextBus, [{
+		key: "handleClick",
+		value: function handleClick(e, num) {
+			var newColor = this.state[num] === "fas" ? "far" : "fas";
+			this.setState(_defineProperty({}, num, newColor));
+		}
+	}, {
+		key: "render",
+		value: function render() {
+			var _this8 = this;
+
+			return React.createElement(
+				"div",
+				{ className: "TileNextBus" },
+				React.createElement(
+					"h2",
+					null,
+					"Next Bus"
+				),
+				React.createElement(
+					"ul",
+					{ className: "bus-list" },
+					React.createElement(
+						"li",
+						{ "data-bus": "7" },
+						React.createElement("i", { className: this.state.a + " fa-star", onClick: function onClick(e) {
+								return _this8.handleClick(e, "a");
+							} }),
+						"\xA07 Uvic/Downton:Bay G 1:48pm"
+					),
+					React.createElement(
+						"li",
+						{ "data-bus": "11" },
+						React.createElement("i", { className: this.state.b + " fa-star", onClick: function onClick(e) {
+								return _this8.handleClick(e, "b");
+							} }),
+						"\xA011 Tillicum Mall/Uvic: Bay H 1:58pm"
+					),
+					React.createElement(
+						"li",
+						{ "data-bus": "4" },
+						React.createElement("i", { className: this.state.c + " fa-star", onClick: function onClick(e) {
+								return _this8.handleClick(e, "c");
+							} }),
+						"\xA04 Uvic/Downtown: Bay A 1:50pm"
+					),
+					React.createElement(
+						"li",
+						{ "data-bus": "9" },
+						React.createElement("i", { className: this.state.d + " fa-star", onClick: function onClick(e) {
+								return _this8.handleClick(e, "d");
+							} }),
+						"\xA09 Royal Oak/Uvic: Bay E 1:52pm"
+					)
+				)
+			);
+		}
+	}]);
+
+	return TileNextBus;
+}(React.Component);
+
+ReactDOM.render(React.createElement(TiledContent, { context: PubSubManager }), document.querySelector('#TiledContent'));

@@ -65,28 +65,44 @@ header {
 	}
 }
 footer {
-	// height: 5%;
-	.footer-inner {
-		border: 1px solid @darkBlue;
-		background-color: @yellow;
-		width: 100%;
+	&.customizer-off {
+		.footer-inner {
+			border: 1px solid @darkBlue;
+			background-color: @yellow;
+			width: 100%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+		h3 {
+			color: white;
+			margin: 0;
+			margin-right: 20px;
+			display: inline-block;
+		}
+		i {
+			font-size: 40px;
+			margin: 0 7px;
+		}
+		.fa-facebook { color: #3C5A99; }
+		.fa-twitter-square { color: #38A1F3; }
+		.fa-youtube { color: red; }
+	}
+	&.customizer-on {
 		display: flex;
 		justify-content: center;
 		align-items: center;
+		a {
+			color: white;
+			font-weight: bold;
+			font-size: 30px;
+			border-radius: 8px;
+			padding: 10px 20px;
+			margin: 0 10px;
+		}
+		.tile-select-save { background-color: @blue; }
+		.tile-select-cancel { background-color: #4f4f4f; }
 	}
-	h3 {
-		color: white;
-		margin: 0;
-		margin-right: 20px;
-		display: inline-block;
-	}
-	i {
-		font-size: 40px;
-		margin: 0 7px;
-	}
-	.fa-facebook { color: #3C5A99; }
-	.fa-twitter-square { color: #38A1F3; }
-	.fa-youtube { color: red; }
 }
 main {
 	// height: 85%;
@@ -101,6 +117,7 @@ main {
 	background-color: fade(#000,74);
 	z-index: 1;
 	.popup {
+
 		display: none;
 		margin: 100px 20px;
 		padding: 20px;
@@ -217,6 +234,10 @@ main {
 			}
 		}
 		&.popup-tiles {
+			margin: 20px;
+			background-color: @gray;
+			color: black;
+			height: 698px;
 			h2 {
 				text-align: left;
 				margin-bottom: .5em;
@@ -380,65 +401,10 @@ main {
 			}
 		}
 	}
-	footer {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		a {
-			color: white;
-			font-weight: bold;
-			font-size: 30px;
-			border-radius: 8px;
-			padding: 10px 20px;
-			margin: 0 10px;
-		}
-		.tile-select-save { background-color: @blue; }
-		.tile-select-cancel { background-color: #4f4f4f; }
-	}
-	.popup {
-		margin: 20px;
-		background-color: @gray;
-		color: black;
-		height: 698px;
-	}
 }
 //------------------------------------------------------------------------------
-// React
+// React (also, the non-React tiles for logged out view)
 //------------------------------------------------------------------------------
-.tile-wrap {
-
-	// display: table;
-	height: 100%;
-	width: 100%;
-	border-spacing: 20px;
-	
-
-	.row  {
-		// display: table-row;
-		display: flex;
-		// height: ~"calc(20% - 10px)";
-		height: 150px;
-		.cell {
-			background-color: fade(@blue, 90);
-			width: 100%;
-			margin: 6px;
-			color: white;
-			padding-left: 5px;
-			padding-top: 0%;
-			padding-bottom: 0%;
-			border: 1px solid black;
-			// height: ~"calc(20% - 10px)";
-			overflow: auto; // Takes care of overflow automatically	
-			margin: 6px;
-			position: relative;
-			// .cell-1, .cell-2 {
-			// 	width: ~"calc(50% - 10px)";
-			// }
-			
-		}
-		
-	}
-}
 #TiledContent, .tile-wrap {
 	height: 100%;
 	width: 100%;
@@ -473,7 +439,7 @@ main {
 			}
 			.xmark { left: 0; }
 			.replace { right: 0; }
-			&.Tile-empty {
+			.Tile-empty, &.Tile-empty {
 				background-color: transparent;
 				border: 0px;
 			}
@@ -565,6 +531,11 @@ main {
 					padding-left: 25%;
 				}
 			}
+			.CustomizerOn & { // Special Tile styling when Customizer is on
+				background-color: @gray;
+				color: #000;
+				overflow: hidden;
+			}
 			.TileSimple {
 				text-align: center;
 				.cell-icon {
@@ -578,8 +549,47 @@ main {
 					width: 100%;
 				}
 			}
-			// .cell-single { padding-top: 8px; }
-			// #cell-notify { padding-top: 14px; }
+			.Tile-customizer {
+				width: 100%;
+				height: 100%;
+				text-align: center;
+				padding: 10px;
+				&.Tile-empty {
+					text-align: center;
+					padding: 0;
+					cursor: pointer;
+					.empty-plus {
+						font-size: 98px;
+						font-weight: 900;
+						line-height: 1em;
+					}
+					.empty-text {
+						font-size: 25px;
+					}
+				}
+				* { display: inline-block; }
+				&.Tile-cust-single {
+					img {
+						width: 85px;
+						margin: 0 auto;
+					}
+					h3 {
+						display: block;
+						margin: 5px auto;
+					}
+				}
+				&.Tile-cust-double {
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					img {
+						margin-right: 20px;
+					}
+					h3 {
+						margin-left: 20px;
+					}
+				}
+			}
 			.TileNextBus{
 				h2{
 					margin-left: 5px;
@@ -602,3 +612,4 @@ main {
 		}
 	}
 }
+.customizer-on { display: none; }

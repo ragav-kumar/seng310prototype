@@ -1,3 +1,31 @@
+//For jQuery - React integration
+let PubSubManager = {
+		subscribers: [],
+		subscribe: function(toggleCallback, insertCallback) {
+			this.subscribers.push({
+				toggle: toggleCallback,
+				insert: insertCallback
+			});
+		},
+		toggleState: function() {
+			this.subscribers.forEach(subscriber => {
+				subscriber.toggle();
+			});
+		},
+		insertTile: function(type) {
+			this.subscribers.forEach(subscriber => {
+				subscriber.insert(type);
+			});
+		},
+		showTileSelect: function() {
+			$(".popup-wrap").show();
+			$(".popup-tiles").show();
+		},
+		triggerRefresh: function() {
+			$(".TileNews").tabs();
+		}
+	};
+//------------------------------------------------------------------------------
 $(function () {
 	// used to identify which button was hit in a form
 	let submitAction;
@@ -9,23 +37,12 @@ $(function () {
 		$(".popup-wrap, .popup-wrap popup").hide();
 	});
 	// News tabs (via jquery UI)
-	$("#cell-news, .TileNews").tabs();
+	$(".TileNews").tabs();
 	$(".flipswitch").flipswitch({
 		texts: null,
 		height: 30,
 		width: 50,
 		init: "right"
-	});
-	
-	// Bus favourites
-	$("#cell-bus i").click(function () { 
-		// Toggle star behaviour
-		$(this).toggleClass("far").toggleClass("fas");
-		if ($(this).hasClass("fas")) {
-			$(this).parent().addClass("star");
-		} else {
-			$(this).parent().removeClass("star");
-		}
 	});
 	// Header Icons
 	$("body.logged-in .email-icon").click(function (e) {
@@ -36,7 +53,6 @@ $(function () {
 		e.preventDefault();
 		$(".popup-wrap").show();
 		$(".popup-notify").show();
-		// alert("Due to technical difficulties, Notifications have been disabled for this demo.");
 	});
 	$("body.logged-in .settings-icon").click(function (e) {
 		e.preventDefault();
@@ -84,7 +100,18 @@ $(function () {
 		$(".popup-wrap").hide();
 		$(".popup-tiles").hide();
 	});
-	var insertRow;
+	$(".tile-choice").click(function(e) {
+		e.preventDefault();
+		if ($(this).hasClass("disabled")) {
+			return;
+		}
+		// Publish to react
+		PubSubManager.insertTile($(this).data("tile"));
+		// And hide popup
+		$(".popup-wrap").hide();
+		$(".popup-tiles").hide();
+	});
+	/* var insertRow;
 	var insertCell;
 	function showTileDialog() {
 		console.log("show");
@@ -125,92 +152,33 @@ $(function () {
 			}
 		}, 200);
 	});
-	/*(function() { 
-
-		// how many milliseconds is a long press?
-		let longpress = 200;
-		// holds the start time
-		let start;
-		let selector = ".xmark, .replace";
-		
-		$( "body" ).on( 'mousedown', selector, function( e ) {
-			start = new Date().getTime();
-			$(this).addClass("bigX");
-			setTimeout(() => {
-				if ($(this).hasClass("bigX")) {
-					$(this).trigger("mouseup");
-				}
-			}, 200);
-		} );
 	
-		$( "body" ).on( 'mouseleave', selector, function( e ) {
-			start = 0;
-			$(this).removeClass("bigX");
-		} );
-	
-		$( "body" ).on( 'mouseup', selector, function( e ) {
-			$(this).removeClass("bigX");
-			if ( new Date().getTime() >= ( start + longpress )  ) {
-				if ($(this).hasClass("xmark") && $(this).parents(".row-1").length) {
-					//remove action
-					tileRemove(1);
-				} else if ($(this).hasClass("replace") && $(this).parents(".row-0").length) {
-					tileReplace();
-				}
-			}
-		} );
-	
-	}());*/
-	$(".tile-choice").click(function(e) {
-		e.preventDefault();
-		if ($(this).hasClass("disabled")) {
-			return;
-		}
-		let newTile;
-		switch ($(this).data("tile")) {
-			case "faq":
-				newTile = `<img id="cell-icon" src="img/help.png"><h3>FAQ</h3>`;
-				// if (insertRow==1) {
-				// 	alert("Due to technical limitations of mocking up this prototype in a browser (as opposed to an app), please complete the next subtask before saving and leaving the customizer.");
-				// }
-				break;
-			case "grades":
-				newTile = `<img id="cell-icon" src="img/exam.png"><h3>Course Grades</h3>`;
-				break;
-			case "library":
-				newTile = `<img id="cell-icon" src="img/living-room-books-group.png"><h3>Library</h3>`;
-				break;
-			default:
-				return;
-		}
-		newTile = "<img class=\"xmark\" src=\"img/x-mark.png\"><img class=\"replace\" src=\"img/replace.png\"><div class=\"cell-tile cell-tile-single\">" + newTile + "</div>";
-		$(".popup-wrap").hide();
-		$(".popup-tiles").hide();
-		// Check if we're in row 0. If yes, this is a replace.
-		if (insertRow == 0 && $(".row-0 .cell-1-2").length) {
-			// First delete.
-			tileRemove(0);
-		}
-		// Insert new tile
-		let selector = ".row-" + insertRow + " .cell-" + insertCell;
-		// console.log(selector);
-		// console.log(newTile);
-		$(selector).html(newTile);
-	});
 	$(".tile-wrap").on("click", ".cell-empty", function() {
 		insertRow = $(this).parents(".row-0").length ? 0 : 1;
 		insertCell = $(this).parents(".cell-1").length ? 1 : 2;
 		showTileDialog();
-	});
-	
-	// How do we show correct tiles in logged in view? We use GET.
-	function loggedinTiles() {
-		var queryDict = {};
-		location.search.substr(1).split("&").forEach(function(item) {queryDict[item.split("=")[0]] = item.split("=")[1]});
-	}
+	}); */
 	$(".popup-notify a").click(function(e) {
 		e.preventDefault();
 		$(".popup-wrap").hide();
 		$(".popup-notify").hide();
 	})
+	$(".tile-customizer-button").click(function(e) {
+		e.preventDefault();
+		// Just notify React of whats happened.
+		PubSubManager.toggleState();
+		$("body").addClass("CustomizerOn");
+		//Hide settings
+		$(".popup-wrap").hide();
+		$(".popup-settings").hide();
+		//Swap out social media for save/cancel
+		$(".customizer-off").hide();
+		$(".customizer-on").show();
+	});
+	$(".tile-select-save, .tile-select-cancel").click(function(e) {
+		$("body").removeClass("CustomizerOn");
+		PubSubManager.toggleState();
+		$(".customizer-off").show();
+		$(".customizer-on").hide();
+	});
 });

@@ -22,20 +22,73 @@ class TiledContent extends React.Component {
 			row1: ["timetable", null],
 			row2: ["onecard", "registration"],
 			row3: ["nextbus", null],
-			custMode: false
+			custMode: false,
+			context: props.context,
+			insertInto: { row: 0, col: 1 },
 		};
-		this.changeMode = this.changeMode.bind(this);
+		this.state.context.subscribe(this.triggerCustomizerMode, this.insertTile);
+		
+		this.handleTileIcon = this.handleTileIcon.bind(this);
 	}
-	changeMode(row, ) {
-		//TODO:
+	// The only change is to move tiles into customizer mode.
+	triggerCustomizerMode = () => {
+		this.setState({
+			custMode: !this.state.custMode
+		});
+	}
+	insertTile = (type) => {
+		const rowName = "row" + this.state.insertInto.row;
+		rowData = this.state[rowName];
+		rowData[this.state.insertInto.col-1] = type;
+		// Enforce a tile on a specific row+col
+		this.setState({
+			rowName: rowData
+		});
+	}
+	handleTileIcon(row, col, action) {
+		// Identify row
+		console.log({row, col, action});
+		const rowName = "row" + row;
+		rowData = this.state[rowName];
+		// Clear affected tile
+		rowData[col-1] = null;
+		newState = { rowName: rowData };
+		// replace check
+		if (action === "replace") {
+			newState = Object.assign({}, newState, {
+				insertInto: {row: row, col: col}
+			});
+		}
+		this.setState(newState);
+		// Trigger customizer if necessary
+		if (action === "replace") {
+			this.state.context.showTileSelect();
+		}
 	}
 	render() {
+		// console.log(this.state);
 		return (
 			<React.Fragment>
-				<Row rowNumber="0" cells={this.state.row0} custMode={this.state.custMode} changeMode={this.changeMode}/>
-				<Row rowNumber="1" cells={this.state.row1} custMode={this.state.custMode} changeMode={this.changeMode}/>
-				<Row rowNumber="2" cells={this.state.row2} custMode={this.state.custMode} changeMode={this.changeMode}/>
-				<Row rowNumber="3" cells={this.state.row3} custMode={this.state.custMode} changeMode={this.changeMode}/>
+				<Row rowNumber="0"
+					cells={this.state.row0}
+					custMode={this.state.custMode}
+					onTileIconClick={this.handleTileIcon}
+				/>
+				<Row rowNumber="1"
+					cells={this.state.row1}
+					custMode={this.state.custMode}
+					onTileIconClick={this.handleTileIcon}
+				/>
+				<Row rowNumber="2"
+					cells={this.state.row2}
+					custMode={this.state.custMode}
+					onTileIconClick={this.handleTileIcon}
+				/>
+				<Row rowNumber="3"
+					cells={this.state.row3}
+					custMode={this.state.custMode}
+					onTileIconClick={this.handleTileIcon}
+				/>
 			</React.Fragment>
 		);
 	}
@@ -44,41 +97,45 @@ class TiledContent extends React.Component {
 class Row extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = {
-			left: props.cells[0],
-			right: props.cells[1],
-		}
-		this.handleDeleteReplace = this.handleDeleteReplace.bind(this);
-		this.handleInsert = this.handleInsert.bind(this);
+		this.passAlongClick = this.passAlongClick.bind(this);
 	}
-	handleDeleteReplace(e, col, action) {
-		this.setState({
-			[col]: null
-		});
-		if (action === "replace") { // Replace: Trigger Tile Selection
-			this.handleInsert(col);
+	passAlongClick(row, col) {
+		return (action) => {
+			this.props.onTileIconClick(row, col, action);
 		}
 	}
-	handleInsert(col) {
-		this.props.changeMode(e);
-	}
+	
 	render() {
+		const left = this.props.cells[0];
+		const right = this.props.cells[1];
 		const className = "Row Row-" + this.props.rowNumber;
+		const row = this.props.rowNumber;
 		let cells;
-		if (this.state.left && tile_sizes[this.state.left] === 2) { // Double cell
-			cells = <DoubleTile type={this.state.left} custMode={this.props.custMode}/>;
+		if (left && tile_sizes[left] === 2) { // Double cell
+			cells = (
+				<DoubleTile
+					type={left}
+					custMode={this.props.custMode}
+					onTileIconClick={this.passAlongClick(row, 1)}
+				/>
+			);
 		} else {
-			cells = [];
-			if (this.state.left) {
-				cells.push(<SingleTile key="1" column="1" type={this.state.left} custMode={this.props.custMode}/>);
-			} else {
-				cells.push(<EmptyTile key="1" column="1" custMode={this.props.custMode}/>);
-			}
-			if (this.state.right) {
-				cells.push(<SingleTile key="2" column="2" type={this.state.right} custMode={this.props.custMode}/>);
-			} else {
-				cells.push(<EmptyTile key="2" column="2" custMode={this.props.custMode}/>);
-			}
+			cells = (
+				<React.Fragment>
+					<SingleTile
+						column="1"
+						type={left}
+						custMode={this.props.custMode}
+						onTileIconClick={this.passAlongClick(row, 1)}
+					/>
+					<SingleTile
+						column="2"
+						type={right}
+						custMode={this.props.custMode}
+						onTileIconClick={this.passAlongClick(row, 2)}
+					/>
+				</React.Fragment>
+			);
 		}
 		return (
 			<div className={className}>
@@ -89,13 +146,24 @@ class Row extends React.Component {
 }
 //------------------------------------------------------------------------------
 function SingleTile(props) {
-	return (
-		<Tile
-			className={"Tile-" + props.column}
-			type={props.type}
-			custMode={props.custMode}
-		/>
-	);
+	if (!props.type) {
+		return (
+			<EmptyTile
+				className={"Tile-" + props.column}
+				custMode={props.custMode}
+				handleClick={props.onTileIconClick}
+			/>
+		);
+	} else {
+		return (
+			<Tile
+				className={"Tile-" + props.column}
+				type={props.type}
+				custMode={props.custMode}
+				onTileIconClick={props.onTileIconClick}
+			/>
+		);
+	}
 }
 function DoubleTile(props) {
 	//Double Tiles cannot be empty, so no check
@@ -104,18 +172,26 @@ function DoubleTile(props) {
 			className={"Tile-1-2"}
 			type={props.type}
 			custMode={props.custMode}
+			onTileIconClick={props.onTileIconClick}
 		/>
 	);
 }
-// Always single size
+//------------------------------------------------------------------------------
 function EmptyTile(props) {
-	return (
-		<Tile
-			className={"Tile-" + props.column + " Tile-empty"}
-			type="empty"
-			custMode={props.custMode}
-		/>
-	);
+	let className = "Tile-empty"
+	if (props.custMode) {
+		className += " Tile-customizer"
+		return (
+			<div className={"Tile Tile-empty " + props.className}>
+				<div className={className} onClick={e => props.handleClick("replace")}>
+					<div className="empty-plus">+</div>
+					<div className="empty-text">Tap to add</div>
+				</div>
+			</div>
+		);
+	} else {
+		return <div className={"Tile Tile-empty " + props.className}><div className={className}></div></div>;
+	}
 }
 //------------------------------------------------------------------------------
 /**
@@ -123,38 +199,40 @@ function EmptyTile(props) {
  * Tiles vary based on their state (customizer on or off)
  * @param {*} props 
  */
-function Tile (props) {
-	let icons = null;
-	let contents = null;
-	if (props.custMode) { // Customizer mode
-		const handleClick = (e, action) => props.onClick(e, props.row, props.col, action);
-		if (props.type !== "empty") {
-			icons = (
-				<React.Fragment>
-					<img className="xmark" src="img/x-mark.png" onClick={e => handleClick(e, "delete")}/>
-					<img className="replace" src="img/replace.png" onClick={e => handleClick(e, "replace")}/>
-				</React.Fragment>
-			);
+class Tile extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			bigX: false,
+			bigR: false
 		}
-		// In customizer mode, we just need to know if its empty.
-		if (props.type === "empty") { // + sign
-			contents = (
-				<React.Fragment>
-					<div class="empty-plus">+</div>
-					<div class="empty-text">Tap to add</div>
-				</React.Fragment>
-			);
-		} else {
-			contents = (
-				<div className="Tile-inner">
-					<img className="cell-icon" src={"img/" + props.title + ".png"} />
-					<h3>{props.title}</h3>
+		this.handleClick = this.handleClick.bind(this);
+		this.getContent = this.getContent.bind(this);
+	}
+	typeLabels = {
+		grades: "Course Grades",
+		registration: "Registration",
+		rooms: "Room Bookings",
+		library: "Library",
+		canteen: "Canteens",
+		faq: "FAQ",
+		map: "Map",
+		news: "Campus News",
+		timetable: "Timetable",
+		nextbus: "Next Bus",
+		onecard: "OneCard",
+	}
+	getContent(custMode, type) {
+		if (custMode) {
+			const size = tile_sizes[type] == 1 ? "Tile-cust-single" : "Tile-cust-double";
+			return (
+				<div className={"Tile-customizer " + size}>
+					<img src={"img/" + type + ".png"} />
+					<h3>{this.typeLabels[type]}</h3>
 				</div>
 			);
 		}
-	} else {
-		// Determine what kind of tile to display.
-		switch (props.type) {
+		switch (type) {
 			case "grades":
 			case "registration":
 			case "rooms":
@@ -162,29 +240,60 @@ function Tile (props) {
 			case "canteen":
 			case "faq":
 			case "map":
-				contents = <TileSimple title={props.type} />;
-				break;
+				return <TileSimple title={type} />;
 			case "news":
-				contents = <TileNews />;
-				break;
+				return <TileNews />;
 			case "timetable":
-				contents = <TileTimetable />;
-				break;
+				return <TileTimetable />;
 			case "nextbus":
-				contents = <TileNextBus />;
-				break;
+				return <TileNextBus />;
 			case "onecard":
-				contents = <TileOneCard />
-				break;
+				return <TileOneCard />;
 		}
 	}
-	
-	return (
-		<div className={"Tile " + props.className}>
-			{icons}
-			{contents}
-		</div>
-	);
+
+	handleClick(action) {
+		if (action === "replace") {
+			this.setState({ bigR: true });
+		} else {
+			this.setState({ bigX: true });
+		}
+		setTimeout(() => {
+			this.setState({
+				bigR: false,
+				bigX: false
+			});
+			return this.props.onTileIconClick(action);
+		}, 200);
+	}
+
+	render() {
+		let icons = null;
+		if (this.props.custMode) { // Customizer mode
+			const classX = this.state.bigX ? "xmark bigX" : "xmark";
+			const classR = this.state.bigR ? "replace bigR" : "replace";
+			icons = (
+				<React.Fragment>
+					<img
+						className={classX}
+						src="img/x-mark.png"
+						onClick={e => this.handleClick("delete")}
+					/>
+					<img
+						className={classR}
+						src="img/replace.png"
+						onClick={e => this.handleClick("replace")}
+					/>
+				</React.Fragment>
+			);
+		}
+		return (
+			<div className={"Tile " + this.props.className}>
+				{icons}
+				{this.getContent(this.props.custMode, this.props.type)}
+			</div>
+		);
+	}
 }
 //------------------------------------------------------------------------------
 // Tile Types
@@ -247,19 +356,6 @@ function TileTimetable(props) {
 		</div>
 	);
 }
-function TileNextBus(props) {
-	return(
-		<div className="TileNextBus">
-			<h2>Next Bus</h2>
-			<ul className="bus-list">
-				<li data-bus="7"><i className="fas fa-star"></i>7 Uvic/Downton:Bay G 1:48pm</li>
-				<li data-bus="11"><i className="fas fa-star"></i>11 Tillicum Mall/Uvic: Bay H 1:58pm</li>
-				<li data-bus="4"><i className="far fa-star"></i>4 Uvic/Downtown: Bay A 1:50pm</li>
-				<li data-bus="9"><i className="far fa-star"></i>9 Royal Oak/Uvic: Bay E 1:52pm</li>
-			</ul>
-		</div>
-	);
-}
 function TileOneCard(props) {
 	return(
 		<div className="TileOneCard">
@@ -269,5 +365,48 @@ function TileOneCard(props) {
 		</div>
 	);
 }
+class TileNextBus extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			a: "fas",
+			b: "fas",
+			c: "far",
+			d: "far",
+		}
+		this.handleClick = this.handleClick.bind(this);
+	}
+	handleClick(e, num) {
+		const newColor = this.state[num] === "fas" ? "far" : "fas";
+		this.setState({
+			[num]: newColor
+		});
+	}
+	render() {
+		return(
+			<div className="TileNextBus">
+				<h2>Next Bus</h2>
+				<ul className="bus-list">
+					<li data-bus="7">
+						<i className={this.state.a + " fa-star"} onClick={(e) => this.handleClick(e, "a")}></i>
+						&nbsp;7 Uvic/Downton:Bay G 1:48pm
+					</li>
+					<li data-bus="11">
+						<i className={this.state.b + " fa-star"} onClick={(e) => this.handleClick(e, "b")}></i>
+						&nbsp;11 Tillicum Mall/Uvic: Bay H 1:58pm
+						</li>
+					<li data-bus="4">
+						<i className={this.state.c + " fa-star"} onClick={(e) => this.handleClick(e, "c")}></i>
+						&nbsp;4 Uvic/Downtown: Bay A 1:50pm
+					</li>
+					<li data-bus="9">
+						<i className={this.state.d + " fa-star"} onClick={(e) => this.handleClick(e, "d")}></i>
+						&nbsp;9 Royal Oak/Uvic: Bay E 1:52pm
+					</li>
+				</ul>
+			</div>
+		);
+	}
+}
 
-ReactDOM.render(<TiledContent />, document.querySelector('#TiledContent'));
+ReactDOM.render(React.createElement(TiledContent, { context: PubSubManager }), document.querySelector('#TiledContent'));

@@ -54,7 +54,7 @@ header div.user-icon,
 header a.user-icon {
   float: right;
 }
-footer .footer-inner {
+footer.customizer-off .footer-inner {
   border: 1px solid #002754;
   background-color: #F5AA1C;
   width: 100%;
@@ -62,24 +62,43 @@ footer .footer-inner {
   justify-content: center;
   align-items: center;
 }
-footer h3 {
+footer.customizer-off h3 {
   color: white;
   margin: 0;
   margin-right: 20px;
   display: inline-block;
 }
-footer i {
+footer.customizer-off i {
   font-size: 40px;
   margin: 0 7px;
 }
-footer .fa-facebook {
+footer.customizer-off .fa-facebook {
   color: #3C5A99;
 }
-footer .fa-twitter-square {
+footer.customizer-off .fa-twitter-square {
   color: #38A1F3;
 }
-footer .fa-youtube {
+footer.customizer-off .fa-youtube {
   color: red;
+}
+footer.customizer-on {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+footer.customizer-on a {
+  color: white;
+  font-weight: bold;
+  font-size: 30px;
+  border-radius: 8px;
+  padding: 10px 20px;
+  margin: 0 10px;
+}
+footer.customizer-on .tile-select-save {
+  background-color: #005493;
+}
+footer.customizer-on .tile-select-cancel {
+  background-color: #4f4f4f;
 }
 main {
   height: 600px;
@@ -205,6 +224,12 @@ main {
   right: 0;
   width: 50%;
   border-bottom-right-radius: 8px;
+}
+.popup-wrap .popup.popup-tiles {
+  margin: 20px;
+  background-color: #e0e0e0;
+  color: black;
+  height: 698px;
 }
 .popup-wrap .popup.popup-tiles h2 {
   text-align: left;
@@ -363,52 +388,6 @@ main {
 .tile-select .tile-wrap .cell-tile.cell-tile-double h3 {
   margin-left: 20px;
 }
-.tile-select footer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.tile-select footer a {
-  color: white;
-  font-weight: bold;
-  font-size: 30px;
-  border-radius: 8px;
-  padding: 10px 20px;
-  margin: 0 10px;
-}
-.tile-select footer .tile-select-save {
-  background-color: #005493;
-}
-.tile-select footer .tile-select-cancel {
-  background-color: #4f4f4f;
-}
-.tile-select .popup {
-  margin: 20px;
-  background-color: #e0e0e0;
-  color: black;
-  height: 698px;
-}
-.tile-wrap {
-  height: 100%;
-  width: 100%;
-  border-spacing: 20px;
-}
-.tile-wrap .row {
-  display: flex;
-  height: 150px;
-}
-.tile-wrap .row .cell {
-  background-color: rgba(0, 84, 147, 0.9);
-  width: 100%;
-  color: white;
-  padding-left: 5px;
-  padding-top: 0%;
-  padding-bottom: 0%;
-  border: 1px solid black;
-  overflow: auto;
-  margin: 6px;
-  position: relative;
-}
 #TiledContent,
 .tile-wrap {
   height: 100%;
@@ -459,6 +438,8 @@ main {
 .tile-wrap .Row .Tile .replace {
   right: 0;
 }
+#TiledContent .Row .Tile .Tile-empty,
+.tile-wrap .Row .Tile .Tile-empty,
 #TiledContent .Row .Tile.Tile-empty,
 .tile-wrap .Row .Tile.Tile-empty {
   background-color: transparent;
@@ -566,6 +547,12 @@ main {
   width: 100%;
   padding-left: 25%;
 }
+.CustomizerOn #TiledContent .Row .Tile,
+.CustomizerOn .tile-wrap .Row .Tile {
+  background-color: #e0e0e0;
+  color: #000;
+  overflow: hidden;
+}
 #TiledContent .Row .Tile .TileSimple,
 .tile-wrap .Row .Tile .TileSimple {
   text-align: center;
@@ -581,6 +568,57 @@ main {
 .tile-wrap .Row .Tile .TileSimple h3 {
   margin: 0%;
   width: 100%;
+}
+#TiledContent .Row .Tile .Tile-customizer,
+.tile-wrap .Row .Tile .Tile-customizer {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  padding: 10px;
+}
+#TiledContent .Row .Tile .Tile-customizer.Tile-empty,
+.tile-wrap .Row .Tile .Tile-customizer.Tile-empty {
+  text-align: center;
+  padding: 0;
+  cursor: pointer;
+}
+#TiledContent .Row .Tile .Tile-customizer.Tile-empty .empty-plus,
+.tile-wrap .Row .Tile .Tile-customizer.Tile-empty .empty-plus {
+  font-size: 98px;
+  font-weight: 900;
+  line-height: 1em;
+}
+#TiledContent .Row .Tile .Tile-customizer.Tile-empty .empty-text,
+.tile-wrap .Row .Tile .Tile-customizer.Tile-empty .empty-text {
+  font-size: 25px;
+}
+#TiledContent .Row .Tile .Tile-customizer *,
+.tile-wrap .Row .Tile .Tile-customizer * {
+  display: inline-block;
+}
+#TiledContent .Row .Tile .Tile-customizer.Tile-cust-single img,
+.tile-wrap .Row .Tile .Tile-customizer.Tile-cust-single img {
+  width: 85px;
+  margin: 0 auto;
+}
+#TiledContent .Row .Tile .Tile-customizer.Tile-cust-single h3,
+.tile-wrap .Row .Tile .Tile-customizer.Tile-cust-single h3 {
+  display: block;
+  margin: 5px auto;
+}
+#TiledContent .Row .Tile .Tile-customizer.Tile-cust-double,
+.tile-wrap .Row .Tile .Tile-customizer.Tile-cust-double {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#TiledContent .Row .Tile .Tile-customizer.Tile-cust-double img,
+.tile-wrap .Row .Tile .Tile-customizer.Tile-cust-double img {
+  margin-right: 20px;
+}
+#TiledContent .Row .Tile .Tile-customizer.Tile-cust-double h3,
+.tile-wrap .Row .Tile .Tile-customizer.Tile-cust-double h3 {
+  margin-left: 20px;
 }
 #TiledContent .Row .Tile .TileNextBus h2,
 .tile-wrap .Row .Tile .TileNextBus h2 {
@@ -601,4 +639,7 @@ main {
 .tile-wrap .Row .Tile .TileNextBus ul .bus-number {
   width: 1.5em;
   display: inline-block;
+}
+.customizer-on {
+  display: none;
 }
