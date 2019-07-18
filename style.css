@@ -18,8 +18,8 @@ html body {
   position: relative;
 }
 html body #wrap {
-  width: 375px;
-  height: 740px;
+  width: 360px;
+  height: 588px;
   background-image: url("img/uvic-wallpaper-new.png");
   background-size: cover;
   background-position: center center;
@@ -40,7 +40,7 @@ footer {
   padding: 5px;
 }
 header {
-  height: 10%;
+  height: 8%;
 }
 header div,
 header a {
@@ -48,7 +48,7 @@ header a {
 }
 header div i,
 header a i {
-  font-size: 56px;
+  font-size: 40px;
 }
 header div.user-icon,
 header a.user-icon {
@@ -101,14 +101,14 @@ footer.customizer-on .tile-select-cancel {
   background-color: #4f4f4f;
 }
 main {
-  height: 600px;
+  height: 480px;
 }
 .popup-wrap {
   display: none;
   position: absolute;
   top: 0;
   height: 100%;
-  width: 375px;
+  width: 360px;
   background-color: rgba(0, 0, 0, 0.74);
   z-index: 1;
 }
@@ -397,19 +397,20 @@ main {
 #TiledContent .Row,
 .tile-wrap .Row {
   display: flex;
-  height: 150px;
+  height: 120px;
 }
 #TiledContent .Row .Tile,
 .tile-wrap .Row .Tile {
   background-color: rgba(0, 84, 147, 0.9);
   width: 100%;
+  margin: 6px;
   color: white;
   padding-left: 5px;
   padding-top: 0%;
   padding-bottom: 0%;
   border: 1px solid black;
   overflow: auto;
-  margin: 6px;
+  margin: 2px;
   position: relative;
 }
 #TiledContent .Row .Tile .xmark,
@@ -532,20 +533,21 @@ main {
   float: left;
   width: 30%;
   margin-left: 5%;
-  margin-top: 10%;
+  margin-top: 5%;
 }
 #TiledContent .Row .Tile .TileOneCard h3,
 .tile-wrap .Row .Tile .TileOneCard h3 {
   padding-left: 5px;
   float: left;
   width: 10%;
-  margin-top: 18%;
+  margin-top: 13%;
 }
 #TiledContent .Row .Tile .TileOneCard h2,
 .tile-wrap .Row .Tile .TileOneCard h2 {
   float: left;
   width: 100%;
   padding-left: 25%;
+  margin-top: 5px;
 }
 .CustomizerOn #TiledContent .Row .Tile,
 .CustomizerOn .tile-wrap .Row .Tile {
@@ -559,10 +561,10 @@ main {
 }
 #TiledContent .Row .Tile .TileSimple .cell-icon,
 .tile-wrap .Row .Tile .TileSimple .cell-icon {
-  height: 80px;
+  height: 70px;
   width: auto;
-  padding-top: 10%;
-  margin-bottom: 10px;
+  padding-top: 5%;
+  margin-bottom: 5px;
 }
 #TiledContent .Row .Tile .TileSimple h3,
 .tile-wrap .Row .Tile .TileSimple h3 {
@@ -639,7 +641,4 @@ main {
 .tile-wrap .Row .Tile .TileNextBus ul .bus-number {
   width: 1.5em;
   display: inline-block;
-}
-.customizer-on {
-  display: none;
 }
