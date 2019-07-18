@@ -75,7 +75,7 @@ $(function () {
 			$(".popup-login").hide();
 		} else {
 			if ($("#login-id").val() && $("#login-password").val()) {
-				window.location.href = "loggedin.html";
+				window.location.href = "react.html";
 			} else { // error message
 				alert("Please enter your netlink ID and password");
 			}
@@ -111,53 +111,6 @@ $(function () {
 		$(".popup-wrap").hide();
 		$(".popup-tiles").hide();
 	});
-	/* var insertRow;
-	var insertCell;
-	function showTileDialog() {
-		console.log("show");
-		$(".popup-wrap").show();
-		$(".popup-tiles").show();
-	}
-	function tileReplace() {
-		insertRow = 0;
-		insertCell = 1;
-		showTileDialog();
-	}
-	let tileRemove = (row) => {
-		// For demo, only defined for timetable tile
-		$(".row-" + row).html(`
-		<div class="cell cell-1">
-			<div class="cell-tile cell-empty">
-				<div class="empty-plus">+</div>
-				<div class="empty-text">Tap to add</div>
-			</div>
-		</div>
-		<div class="cell cell-2">
-			<div class="cell-tile cell-empty">
-				<div class="empty-plus">+</div>
-				<div class="empty-text">Tap to add</div>
-			</div>
-		</div>
-		`);
-	}
-	$("body").on("click", ".xmark, .replace", function(e) {
-		$(this).addClass("bigX");
-		setTimeout(() => {
-			$(this).removeClass("bigX");	
-			if ($(this).hasClass("xmark") && $(this).parents(".row-1").length) {
-				//remove action
-				tileRemove(1);
-			} else if ($(this).hasClass("replace") && $(this).parents(".row-0").length) {
-				tileReplace();
-			}
-		}, 200);
-	});
-	
-	$(".tile-wrap").on("click", ".cell-empty", function() {
-		insertRow = $(this).parents(".row-0").length ? 0 : 1;
-		insertCell = $(this).parents(".cell-1").length ? 1 : 2;
-		showTileDialog();
-	}); */
 	$(".popup-notify a").click(function(e) {
 		e.preventDefault();
 		$(".popup-wrap").hide();
