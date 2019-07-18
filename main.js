@@ -9,7 +9,7 @@ $(function () {
 		$(".popup-wrap, .popup-wrap popup").hide();
 	});
 	// News tabs (via jquery UI)
-	$("#cell-news").tabs();
+	$("#cell-news, .TileNews").tabs();
 	$(".flipswitch").flipswitch({
 		texts: null,
 		height: 30,
