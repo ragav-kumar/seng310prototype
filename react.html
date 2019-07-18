@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<!-- CSS -->
+	<link rel="stylesheet" href="vendor/fontawesome/css/all.css">
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+	<link rel="stylesheet" href="vendor/jqflipswitch.default.style.css" type="text/css" media="all" />
+	<link rel="stylesheet" href="main.css">
+	<!-- JS -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script type="text/javascript" src="vendor/jquery.jqflipswitch.min.js"></script>
+	<script src="main.js"></script>
+
+	<!-- Load React. -->
+	<!-- Note: when deploying, replace "development.js" with "production.min.js". -->
+	<script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+	<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+
+	<title>Facelift Prototype - Logged In</title>
+</head>
+<body class="logged-in">
+	<div id="wrap">
+		<header>
+			<!-- Header bar -->
+			<div class="menu-icon">
+				<i class="fas fa-bars"></i>
+			</div>
+			<a href="#" class="settings-icon"><i class="fas fa-cog"></i></a>
+			<a href="#" class="email-icon"><i class="fas fa-envelope"></i></a>
+			<a href="#" class="notification-icon"><i class="fas fa-bell"></i></a>
+			<!-- This one should be right aligned -->
+			<a href="#" class="user-icon logout"><i class="fas fa-user"></i></a>
+		</header>
+		<main>
+			<div class="popup-wrap">
+				<!-- floaters -->
+				<div class="popup popup-settings">
+					<h2>Settings</h2>
+					<a href="tileselect.html" class="tile-customizer-button button"><i class="fas fa-cogs"></i><span>Customize Homescreen</span></a>
+					<h3>Show Push notifications for:</h3>
+					<div class="switch-row">
+						<div class="flipswitch"></div>
+						<h3>Next Class</h3>
+					</div>
+					<div class="switch-row">
+						<div class="flipswitch"></div>
+						<h3>Tuition Due</h3>
+					</div>
+					<div class="switch-row">
+						<div class="flipswitch"></div>
+						<h3>Admin Notices</h3>
+					</div>
+					<div class="switch-row">
+						<div class="flipswitch"></div>
+						<h3>OneCard Balance</h3>
+					</div>
+					<a href="#" class="settings-save button">Save</a>
+				</div>
+				<div class="popup popup-logout">
+					<!-- TODO: Logout Prompt -->
+				</div>
+				<div class="popup popup-notify">
+					<h2>Notifications</h2>
+					<a href="#"><img src="img/exit.png"></a>
+					<ul>
+						<li class="new-notification"><div class="circle"></div><span>Tuition is due by tomorrow</span></li>
+						<li><span>Next class is CSC110 starting at 10:30am in ECS123</span></li>
+						<li><span>You used your Onecard to pay for Booster Juice. The current balance is $29.37</span></li>
+					</ul>
+					<div class="notify-bottom">See All</div>
+				</div>
+			</div>
+			<!-- --------------------------------------------------------------- -->
+			<!-- CONTENT AREA BEGINS -->
+			<!-- --------------------------------------------------------------- -->
+			<div id="TiledContent"></div>
+		</main>
+		<!-- --------------------------------------------------------------- -->
+		<!-- CONTENT AREA ENDS -->
+		<!-- --------------------------------------------------------------- -->
+		<footer>
+			<!-- Social Media Buttons -->
+			<div class="footer-inner">
+				<h3>UVic Media</h3>
+				<i class="fab fa-facebook"></i>
+				<i class="fab fa-twitter-square"></i>
+				<i class="fab fa-youtube"></i>
+				<i class="fab fa-instagram"></i>
+			</div>
+		</footer>
+	</div>
+	<!-- Load our React component. -->
+	<script src="TiledContent.js"></script>
+</body>
+</html>
