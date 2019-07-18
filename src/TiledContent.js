@@ -271,7 +271,7 @@ class Tile extends React.Component {
 		let icons = null;
 		if (this.props.custMode) { // Customizer mode
 			const classX = this.state.bigX ? "xmark bigX" : "xmark";
-			const classR = this.state.bigR ? "replace bigR" : "replace";
+			const classR = this.state.bigR ? "replace bigX" : "replace";
 			icons = (
 				<React.Fragment>
 					<img

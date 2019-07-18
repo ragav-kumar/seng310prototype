@@ -349,7 +349,7 @@ var Tile = function (_React$Component3) {
 			if (this.props.custMode) {
 				// Customizer mode
 				var classX = this.state.bigX ? "xmark bigX" : "xmark";
-				var classR = this.state.bigR ? "replace bigR" : "replace";
+				var classR = this.state.bigR ? "replace bigX" : "replace";
 				icons = React.createElement(
 					React.Fragment,
 					null,
