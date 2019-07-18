@@ -19,7 +19,7 @@ html body {
 }
 html body #wrap {
   width: 360px;
-  height: 588px;
+  height: 583px;
   background-image: url("img/uvic-wallpaper-new.png");
   background-size: cover;
   background-position: center center;
@@ -101,7 +101,7 @@ footer.customizer-on .tile-select-cancel {
   background-color: #4f4f4f;
 }
 main {
-  height: 480px;
+  height: 475px;
 }
 .popup-wrap {
   display: none;
