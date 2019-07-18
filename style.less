@@ -336,76 +336,6 @@ main {
 	&.jq-flipper-right { background-color: #0e0; }
 }
 
-//for tile select page
-.tile-select {
-	.tile-wrap{
-		.row{
-			.cell{
-				background-color: @gray;
-				color: #000;
-				overflow: hidden;
-				.cell-empty {
-					text-align: center;
-					.empty-plus {
-						display: block;
-						font-size: 85px;
-						font-weight: 900;
-						line-height: 1em;
-					}
-					.empty-text {
-						display: block;
-						font-size: 22px;
-					}
-				}
-			}
-		}
-		.xmark, .replace {
-			position: absolute;
-			top: 0;
-			width: 32px;
-			-webkit-transition: width 200ms ease;
-			transition: width 200ms ease;
-			&.bigX {
-				-webkit-transition: width 200ms ease;
-				transition: width 200ms ease;
-				width: 64px;
-			}
-		}
-		.xmark { left: 0; }
-		.replace { right: 0; }
-		.cell-tile {
-			width: 100%;
-			height: 100%;
-			padding: 10px;
-			&.cell-empty { padding: 0; }
-			text-align: center;
-			* {
-				display: inline-block;
-			}
-			&.cell-tile-single {
-				img {
-					width: 85px;
-					margin: 0 auto;
-				}
-				h3 {
-					display: block;
-					margin: 5px auto;
-				}
-			}
-			&.cell-tile-double {
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				img {
-					margin-right: 20px;
-				}
-				h3 {
-					margin-left: 20px;
-				}
-			}
-		}
-	}
-}
 //------------------------------------------------------------------------------
 // React (also, the non-React tiles for logged out view)
 //------------------------------------------------------------------------------
@@ -564,11 +494,13 @@ main {
 					padding: 0;
 					cursor: pointer;
 					.empty-plus {
-						font-size: 98px;
+						display: block;
+						font-size: 85px;
 						font-weight: 900;
 						line-height: 1em;
 					}
 					.empty-text {
+						display: block;
 						font-size: 25px;
 					}
 				}
