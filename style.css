@@ -114,17 +114,21 @@ main {
 }
 .popup-wrap .popup {
   display: none;
-  margin: 100px 20px;
+  margin: 50px 20px;
   padding: 20px;
   background-color: #005493;
   color: white;
-  height: calc(100% - 160px);
+  height: calc(100% - 100px);
 }
 .popup-wrap .popup h2 {
   text-align: center;
   margin: 20px auto;
   display: inline-block;
   width: 100%;
+}
+.popup-wrap .popup.popup-settings {
+  margin: 20px;
+  height: calc(100% - 40px);
 }
 .popup-wrap .popup.popup-settings .tile-customizer-button {
   display: block;
@@ -185,7 +189,7 @@ main {
 }
 .popup-wrap .popup.popup-login .form-login-inner .fineprint {
   font-size: 12px;
-  margin-bottom: 4em;
+  margin-bottom: 1em;
 }
 .popup-wrap .popup.popup-login .form-login-inner .fineprint a {
   text-decoration: underline;
@@ -330,12 +334,14 @@ main {
   text-align: center;
 }
 .tile-select .tile-wrap .row .cell .cell-empty .empty-plus {
-  font-size: 98px;
+  display: block;
+  font-size: 85px;
   font-weight: 900;
   line-height: 1em;
 }
 .tile-select .tile-wrap .row .cell .cell-empty .empty-text {
-  font-size: 25px;
+  display: block;
+  font-size: 22px;
 }
 .tile-select .tile-wrap .xmark,
 .tile-select .tile-wrap .replace {
@@ -600,7 +606,7 @@ main {
 }
 #TiledContent .Row .Tile .Tile-customizer.Tile-cust-single img,
 .tile-wrap .Row .Tile .Tile-customizer.Tile-cust-single img {
-  width: 85px;
+  width: 70px;
   margin: 0 auto;
 }
 #TiledContent .Row .Tile .Tile-customizer.Tile-cust-single h3,

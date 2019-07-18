@@ -119,11 +119,11 @@ main {
 	.popup {
 
 		display: none;
-		margin: 100px 20px;
+		margin: 50px 20px;
 		padding: 20px;
 		background-color: @blue;
 		color: white;
-		height: ~"calc(100% - 160px)";
+		height: ~"calc(100% - 100px)";
 		h2 {
 			text-align: center;
 			margin: 20px auto;
@@ -132,6 +132,8 @@ main {
 		}
 		&.popup-settings { // Settings screen
 			//display: none;
+			margin: 20px;
+			height: ~"calc(100% - 40px)";
 			.tile-customizer-button {
 				display: block;
 				width: 90%;
@@ -191,7 +193,7 @@ main {
 				}
 				.fineprint {
 					font-size: 12px;
-					margin-bottom: 4em;
+					margin-bottom: 1em;
 					a {
 						text-decoration: underline;
 						color: gray;
@@ -345,12 +347,14 @@ main {
 				.cell-empty {
 					text-align: center;
 					.empty-plus {
-						font-size: 98px;
+						display: block;
+						font-size: 85px;
 						font-weight: 900;
 						line-height: 1em;
 					}
 					.empty-text {
-						font-size: 25px;
+						display: block;
+						font-size: 22px;
 					}
 				}
 			}
@@ -571,7 +575,7 @@ main {
 				* { display: inline-block; }
 				&.Tile-cust-single {
 					img {
-						width: 85px;
+						width: 70px;
 						margin: 0 auto;
 					}
 					h3 {
