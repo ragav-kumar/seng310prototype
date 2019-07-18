@@ -483,7 +483,7 @@ main {
 }
 #TiledContent .Row .Tile .TileNews > ul > li,
 .tile-wrap .Row .Tile .TileNews > ul > li {
-  font-size: 15px;
+  font-size: 13px;
   width: 33%;
   margin: 0;
   display: flex;
