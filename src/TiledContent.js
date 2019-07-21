@@ -1,5 +1,6 @@
 // import React from 'react'
 
+// Each tile can be either a single (one tile wide) or a double (2 wide)
 const tile_sizes = {
 	"news": 2,
 	"timetable": 2,
@@ -14,28 +15,42 @@ const tile_sizes = {
 	"faq": 1,
 };
 //------------------------------------------------------------------------------
+/**
+ * Root Component. I'm only using React for the tiled content area; everything
+ * else was built in straight HTML and jQuery. Mostly because I didn't know
+ * React at the time.
+ */
 class TiledContent extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			row0: ["news", null],
+			row0: ["news", null], // First 4 states are tiles in a given row
 			row1: ["timetable", null],
 			row2: ["onecard", "registration"],
 			row3: ["nextbus", null],
-			custMode: false,
-			context: props.context,
-			insertInto: { row: 0, col: 1 },
+			custMode: false, // Customizer Mode on / off
+			context: props.context, // Used to pass in a manager to talk with jQuery (see below)
+			insertInto: { row: 0, col: 1 }, // Coords to insert new tile into
 		};
+		/* This application was initially built in HTML + jQuery. Then I learned React, and realized
+		that the tiled content area (which was only partially implemented at this point) would be
+		vastly easier to implement in React. Given that I had a grand total of one day to implement
+		it in React, I decided to ONLY implement that part of the page in React, and leave the rest as is.
+		Thus, React must be able to talk to the old jQuery code to interface with popupo menus.
+		I do this with a Publish / Subscribe Manager (PubSubManager in main.js) passed in via
+		React's context.
+		*/
 		this.state.context.subscribe(this.triggerCustomizerMode, this.insertTile);
 		
 		this.handleTileIcon = this.handleTileIcon.bind(this);
 	}
-	// The only change is to move tiles into customizer mode.
+	// Customizer mode is triggered from jQuery side
 	triggerCustomizerMode = () => {
 		this.setState({
 			custMode: !this.state.custMode
 		});
 	}
+	// A popup on jQuery side will notify what tile I should insert (type)
 	insertTile = (type) => {
 		const rowName = "row" + this.state.insertInto.row;
 		rowData = this.state[rowName];
@@ -45,6 +60,12 @@ class TiledContent extends React.Component {
 			rowName: rowData
 		});
 	}
+	/**
+	 * Used to handle the corner icons on the tiles
+	 * @param {int} row 
+	 * @param {int} col 
+	 * @param {string} action "replace" or "delete"
+	 */
 	handleTileIcon(row, col, action) {
 		// Identify row
 		console.log({row, col, action});
@@ -94,12 +115,17 @@ class TiledContent extends React.Component {
 	}
 }
 //------------------------------------------------------------------------------
+/**
+ * The row is just one of many intermediate components. Biggest contribution is
+ * to indicate which row + column a TileIconClick action is sent from. IOW this 
+ * is where tile location is defined.
+ */
 class Row extends React.Component {
 	constructor(props) {
 		super(props);
 		this.passAlongClick = this.passAlongClick.bind(this);
 	}
-	passAlongClick(row, col) {
+	passAlongClick(row, col) { // Insert coord data into the call passed up the tree
 		return (action) => {
 			this.props.onTileIconClick(row, col, action);
 		}
@@ -111,7 +137,7 @@ class Row extends React.Component {
 		const className = "Row Row-" + this.props.rowNumber;
 		const row = this.props.rowNumber;
 		let cells;
-		if (left && tile_sizes[left] === 2) { // Double cell
+		if (left && tile_sizes[left] === 2) { // Double Tile
 			cells = (
 				<DoubleTile
 					type={left}
@@ -119,7 +145,7 @@ class Row extends React.Component {
 					onTileIconClick={this.passAlongClick(row, 1)}
 				/>
 			);
-		} else {
+		} else { // Single Tile
 			cells = (
 				<React.Fragment>
 					<SingleTile
@@ -145,6 +171,10 @@ class Row extends React.Component {
 	}
 }
 //------------------------------------------------------------------------------
+/**
+ * Single Tiles can be empty! Anyway, this is just a pass through component
+ * @param {*} props 
+ */
 function SingleTile(props) {
 	if (!props.type) {
 		return (
@@ -165,6 +195,11 @@ function SingleTile(props) {
 		);
 	}
 }
+/**
+ * Nothing fancy, a pass through component for Double-size tiles. I only distinguished
+ * these two for the classes, TBH.
+ * @param {*} props 
+ */
 function DoubleTile(props) {
 	//Double Tiles cannot be empty, so no check
 	return (
@@ -177,6 +212,11 @@ function DoubleTile(props) {
 	);
 }
 //------------------------------------------------------------------------------
+/**
+ * EmptyTile is either empty (custMode: OFF) or has a plus sign (custMode: ON).
+ * In the latter case, it can trigger insert events (which are piped to jQuery)
+ * @param {*} props 
+ */
 function EmptyTile(props) {
 	let className = "Tile-empty"
 	if (props.custMode) {
@@ -196,12 +236,15 @@ function EmptyTile(props) {
 //------------------------------------------------------------------------------
 /**
  * Renders a generic tile. This one's not actually visible outside.
- * Tiles vary based on their state (customizer on or off)
+ * Tiles vary based on their state (customizer on or off). This component is only
+ * used if the Tile contains content; empty tiles are handed off to EmptyTile instead
  * @param {*} props 
  */
 class Tile extends React.Component {
 	constructor(props) {
 		super(props);
+		// bigX and bigR are used for the "growing" animation when the corner
+		// icons are clicked.
 		this.state = {
 			bigX: false,
 			bigR: false
@@ -209,7 +252,7 @@ class Tile extends React.Component {
 		this.handleClick = this.handleClick.bind(this);
 		this.getContent = this.getContent.bind(this);
 	}
-	typeLabels = {
+	typeLabels = { // About what it looks like, though perhaps a bit buried.
 		grades: "Course Grades",
 		registration: "Registration",
 		rooms: "Room Bookings",
@@ -223,6 +266,8 @@ class Tile extends React.Component {
 		onecard: "OneCard",
 	}
 	getContent(custMode, type) {
+		// in Customizer mode, tile content is not shown. Instead, we are limited
+		// to only an icon and title text.
 		if (custMode) {
 			const size = tile_sizes[type] == 1 ? "Tile-cust-single" : "Tile-cust-double";
 			return (
@@ -232,6 +277,7 @@ class Tile extends React.Component {
 				</div>
 			);
 		}
+		// Outside customizer mode... I hand off to subcomponents as appropriate.
 		switch (type) {
 			case "grades":
 			case "registration":
@@ -251,13 +297,17 @@ class Tile extends React.Component {
 				return <TileOneCard />;
 		}
 	}
-
+	/**
+	 * Handles clicks! Passes things up the hierarchy after doing the icon animation thing.
+	 * @param {string} action "replace" or "delete"
+	 */
 	handleClick(action) {
 		if (action === "replace") {
 			this.setState({ bigR: true });
 		} else {
 			this.setState({ bigX: true });
 		}
+		// Basically, the icon grows over 0.2s upon click. Makes it clear what happened.
 		setTimeout(() => {
 			this.setState({
 				bigR: false,
@@ -269,6 +319,7 @@ class Tile extends React.Component {
 
 	render() {
 		let icons = null;
+		// Since we use getContent(), we only need to worry about rendering the icons.
 		if (this.props.custMode) { // Customizer mode
 			const classX = this.state.bigX ? "xmark bigX" : "xmark";
 			const classR = this.state.bigR ? "replace bigX" : "replace";
@@ -297,6 +348,8 @@ class Tile extends React.Component {
 }
 //------------------------------------------------------------------------------
 // Tile Types
+//------------------------------------------------------------------------------
+// Icon and image, thassall.
 function TileSimple(props) {
 	return(
 		<div className="TileSimple">
@@ -305,10 +358,17 @@ function TileSimple(props) {
 		</div>
 	);
 }
+/**
+ * This ones a bit finicky. It's tabbed content, and my attempts to integrate a react
+ * library hit face first the issues I was having with babel 6 (babel 7, I couldn't get working
+ * at the time). So I left them with the jQuery-ui tabs, but that is problematic since those onluy
+ * render on initial page load...
+ * @param {*} props 
+ */
 function TileNews(props) {
 	return(
 		<div className="TileNews">
-			{/* Tabs */}
+			{/* Tabs */}**
 			<ul>
 				<li><a href="#news-1">Today's Events</a></li>
 				<li><a href="#news-2">Campus News</a></li>
@@ -365,6 +425,10 @@ function TileOneCard(props) {
 		</div>
 	);
 }
+/**
+ * Implemented interactivity in the form of the favourite stars. As with other things,
+ * I ended up having to leave it at "functional-ish"; I should get back and make these sort themselves into two sublists.
+ */
 class TileNextBus extends React.Component {
 	constructor(props) {
 		super(props);
@@ -376,6 +440,11 @@ class TileNextBus extends React.Component {
 		}
 		this.handleClick = this.handleClick.bind(this);
 	}
+	/**
+	 * Used the solid vs empty stars from font awesome for the effect here
+	 * @param {object} e 
+	 * @param {int} num Bus number (state name)
+	 */
 	handleClick(e, num) {
 		const newColor = this.state[num] === "fas" ? "far" : "fas";
 		this.setState({
